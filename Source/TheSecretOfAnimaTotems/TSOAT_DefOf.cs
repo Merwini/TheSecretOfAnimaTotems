@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+[DefOf]
+public class TSOAT_DefOf
 {
-    [DefOf]
-    public class TSOAT_DefOf
-    {
-        public static HediffDef TSOA_CairnHediff;
-    }
+    public static HediffDef TSOA_CairnHediff;
 }

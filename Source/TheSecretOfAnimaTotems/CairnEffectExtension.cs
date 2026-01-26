@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+public class CairnEffectExtension : DefModExtension
 {
-    public class CairnEffectExtension : DefModExtension
+    public bool isOffset;
+    public bool isFactor;
+
+    public StatDef statDef;
+    public float value;
+
+    public override IEnumerable<string> ConfigErrors()
     {
-        public bool isOffset;
-        public bool isFactor;
+        foreach (var error in base.ConfigErrors())
+            yield return error;
 
-        public StatDef statDef;
-        public float value;
-
-        public override IEnumerable<string> ConfigErrors()
+        if ((!isOffset && !isFactor) || (isOffset && isFactor))
         {
-            foreach (var error in base.ConfigErrors())
-                yield return error;
-
-            if ((!isOffset && !isFactor) || (isOffset && isFactor))
-            {
-                yield return "Config error in CairnEffectExtension. Must either be a stat offset or a stat factor";
-            }
+            yield return "Config error in CairnEffectExtension. Must either be a stat offset or a stat factor";
         }
     }
 }

@@ -8,140 +8,139 @@ using tsoa.core;
 using UnityEngine;
 using Verse;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+public class CompSpecialMeditationFocus_Anima : CompSpecialMeditationFocus
 {
-    public class CompSpecialMeditationFocus_Anima : CompSpecialMeditationFocus
+    private const int TicksUntilEffect = 2500;
+    private const int ResetPawnProgressAfterTicks = 120;
+    private Dictionary<int, MeditationTracker> trackerDict = new Dictionary<int, MeditationTracker>();
+
+
+    public override void CompTickLong()
     {
-        private const int TicksUntilEffect = 2500;
-        private const int ResetPawnProgressAfterTicks = 120;
-        private Dictionary<int, MeditationTracker> trackerDict = new Dictionary<int, MeditationTracker>();
+        base.CompTickLong();
+        CleanDictionary();
+    }
 
+    public override void DoMeditationTick(Pawn pawn)
+    {
+        base.DoMeditationTick(pawn);
 
-        public override void CompTickLong()
+        if (pawn == null)
+            return;
+
+        if (UpdateTrackerForPawn(pawn))
         {
-            base.CompTickLong();
-            CleanDictionary();
+            ApplyOrReapplyHediffToPawn(pawn);
         }
+    }
 
-        public override void DoMeditationTick(Pawn pawn)
+    private bool UpdateTrackerForPawn(Pawn pawn)
+    {
+        int id = pawn.thingIDNumber;
+        int now = Find.TickManager.TicksGame;
+        if (!trackerDict.TryGetValue(id, out var tr))
         {
-            base.DoMeditationTick(pawn);
-
-            if (pawn == null)
-                return;
-
-            if (UpdateTrackerForPawn(pawn))
+            tr = new MeditationTracker
             {
-                ApplyOrReapplyHediffToPawn(pawn);
-            }
+                accumulatedTicks = 0,
+                lastTickSeen = now
+            };
+            trackerDict[id] = tr;
         }
-
-        private bool UpdateTrackerForPawn(Pawn pawn)
+        else
         {
-            int id = pawn.thingIDNumber;
-            int now = Find.TickManager.TicksGame;
-            if (!trackerDict.TryGetValue(id, out var tr))
+            if (now - tr.lastTickSeen > ResetPawnProgressAfterTicks)
             {
-                tr = new MeditationTracker
-                {
-                    accumulatedTicks = 0,
-                    lastTickSeen = now
-                };
-                trackerDict[id] = tr;
-            }
-            else
-            {
-                if (now - tr.lastTickSeen > ResetPawnProgressAfterTicks)
-                {
-                    tr.accumulatedTicks = 0;
-                }
-            }
-
-            tr.lastTickSeen = now;
-            tr.accumulatedTicks++;
-
-            return tr.accumulatedTicks >= TicksUntilEffect && !tr.alreadyApplied;
-        }
-
-        private void CleanDictionary()
-        {
-            int now = Find.TickManager.TicksGame;
-            if (trackerDict.Count == 0) return;
-
-            List<int> cleaningList = new List<int>();
-            foreach (var kvp in trackerDict)
-            {
-                var tracker = kvp.Value;
-                if (now - tracker.lastTickSeen > ResetPawnProgressAfterTicks)
-                {
-                    cleaningList.Add(kvp.Key);
-                }
-            }
-
-            foreach (int item in cleaningList)
-            {
-                trackerDict.Remove(item);
+                tr.accumulatedTicks = 0;
             }
         }
 
-        public void ApplyOrReapplyHediffToPawn(Pawn pawn)
+        tr.lastTickSeen = now;
+        tr.accumulatedTicks++;
+
+        return tr.accumulatedTicks >= TicksUntilEffect && !tr.alreadyApplied;
+    }
+
+    private void CleanDictionary()
+    {
+        int now = Find.TickManager.TicksGame;
+        if (trackerDict.Count == 0) return;
+
+        List<int> cleaningList = new List<int>();
+        foreach (var kvp in trackerDict)
         {
-            Hediff_CairnEffect hediff = (Hediff_CairnEffect)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_CairnHediff, pawn);
-            BuildHediffStage(hediff);
-
-            Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_CairnHediff);
-            if (existing != null)
+            var tracker = kvp.Value;
+            if (now - tracker.lastTickSeen > ResetPawnProgressAfterTicks)
             {
-                pawn.health.RemoveHediff(existing);
+                cleaningList.Add(kvp.Key);
             }
-
-            pawn.health.AddHediff(hediff);
-            trackerDict.TryGetValue(pawn.thingIDNumber, out var tr);
-            tr.alreadyApplied = true;
         }
 
-        // Is this stupid?
-        public void BuildHediffStage(Hediff_CairnEffect hediff)
+        foreach (int item in cleaningList)
         {
-            List<Thing> linkedFacilities = CachedCompABGF.LinkedFacilities;
-            if (linkedFacilities.NullOrEmpty())
-                return;
+            trackerDict.Remove(item);
+        }
+    }
 
-            List<Building_AnimusCairn> cairns = linkedFacilities.OfType<Building_AnimusCairn>().ToList();
-            if (cairns.NullOrEmpty())
-                return;
+    public void ApplyOrReapplyHediffToPawn(Pawn pawn)
+    {
+        Hediff_CairnEffect hediff = (Hediff_CairnEffect)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_CairnHediff, pawn);
+        BuildHediffStage(hediff);
 
-            HediffStage hediffStage = new HediffStage();
-            hediffStage.statOffsets = new List<StatModifier>();
-            hediffStage.statFactors = new List<StatModifier>();
-
-            foreach (Building_AnimusCairn cairn in cairns)
-            {
-                cairn.ApplyCairnEffect(hediffStage);
-            }
-
-            hediff.StoreStatModifiers(hediffStage.statOffsets, hediffStage.statFactors);
+        Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_CairnHediff);
+        if (existing != null)
+        {
+            pawn.health.RemoveHediff(existing);
         }
 
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
+        pawn.health.AddHediff(hediff);
+        trackerDict.TryGetValue(pawn.thingIDNumber, out var tr);
+        tr.alreadyApplied = true;
+    }
 
-            Scribe_Collections.Look(ref trackerDict, "trackerDict", LookMode.Value, LookMode.Deep);
+    // Is this stupid?
+    public void BuildHediffStage(Hediff_CairnEffect hediff)
+    {
+        List<Thing> linkedFacilities = CachedCompABGF.LinkedFacilities;
+        if (linkedFacilities.NullOrEmpty())
+            return;
+
+        List<Building_AnimusCairn> cairns = linkedFacilities.OfType<Building_AnimusCairn>().ToList();
+        if (cairns.NullOrEmpty())
+            return;
+
+        HediffStage hediffStage = new HediffStage();
+        hediffStage.statOffsets = new List<StatModifier>();
+        hediffStage.statFactors = new List<StatModifier>();
+
+        foreach (Building_AnimusCairn cairn in cairns)
+        {
+            cairn.ApplyCairnEffect(hediffStage);
         }
 
-        private class MeditationTracker : IExposable
-        {
-            public int accumulatedTicks;
-            public int lastTickSeen;
-            public bool alreadyApplied;
+        hediff.StoreStatModifiers(hediffStage.statOffsets, hediffStage.statFactors);
+    }
 
-            public void ExposeData()
-            {
-                Scribe_Values.Look(ref accumulatedTicks, "accumulatedTicks", 0);
-                Scribe_Values.Look(ref lastTickSeen, "lastTickSeen", 0);
-                Scribe_Values.Look(ref alreadyApplied, "alreadyApplied", false);
-            }
+    public override void PostExposeData()
+    {
+        base.PostExposeData();
+
+        Scribe_Collections.Look(ref trackerDict, "trackerDict", LookMode.Value, LookMode.Deep);
+    }
+
+    private class MeditationTracker : IExposable
+    {
+        public int accumulatedTicks;
+        public int lastTickSeen;
+        public bool alreadyApplied;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref accumulatedTicks, "accumulatedTicks", 0);
+            Scribe_Values.Look(ref lastTickSeen, "lastTickSeen", 0);
+            Scribe_Values.Look(ref alreadyApplied, "alreadyApplied", false);
         }
     }
 }

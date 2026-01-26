@@ -7,13 +7,12 @@ using Verse;
 using RimWorld;
 using tsoa.core;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+public class CompProperties_SpecialMeditationFocus_Anima : CompProperties_SpecialMeditationFocus
 {
-    public class CompProperties_SpecialMeditationFocus_Anima : CompProperties_SpecialMeditationFocus
+    public CompProperties_SpecialMeditationFocus_Anima()
     {
-        public CompProperties_SpecialMeditationFocus_Anima()
-        {
-            this.compClass = typeof(CompSpecialMeditationFocus_Anima);
-        }
+        this.compClass = typeof(CompSpecialMeditationFocus_Anima);
     }
 }

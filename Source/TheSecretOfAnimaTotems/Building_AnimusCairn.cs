@@ -6,46 +6,45 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+public class Building_AnimusCairn : Building
 {
-    public class Building_AnimusCairn : Building
+    private CairnEffectExtension effectExtension;
+    public CairnEffectExtension EffectExtension
     {
-        private CairnEffectExtension effectExtension;
-        public CairnEffectExtension EffectExtension
+        get
         {
-            get
+            if (effectExtension == null)
             {
-                if (effectExtension == null)
+                CairnEffectExtension extension = def.GetModExtension<CairnEffectExtension>();
+                if (extension == null)
                 {
-                    CairnEffectExtension extension = def.GetModExtension<CairnEffectExtension>();
-                    if (extension == null)
-                    {
-                        Log.Error($"Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
-                    }
-                    else
-                    {
-                        effectExtension = extension;
-                    }
+                    Log.Error($"Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
                 }
-                return effectExtension;
+                else
+                {
+                    effectExtension = extension;
+                }
             }
+            return effectExtension;
         }
+    }
 
-        public void ApplyCairnEffect(HediffStage stage)
+    public void ApplyCairnEffect(HediffStage stage)
+    {
+        CairnEffectExtension extension = EffectExtension;
+        StatModifier modifier = new StatModifier();
+        modifier.stat = extension.statDef;
+        modifier.value = extension.value;
+
+        if (extension.isOffset)
         {
-            CairnEffectExtension extension = EffectExtension;
-            StatModifier modifier = new StatModifier();
-            modifier.stat = extension.statDef;
-            modifier.value = extension.value;
-
-            if (extension.isOffset)
-            {
-                stage.statOffsets.Add(modifier);
-            }
-            else if (extension.isFactor)
-            {
-                stage.statFactors.Add(modifier);
-            }
+            stage.statOffsets.Add(modifier);
+        }
+        else if (extension.isFactor)
+        {
+            stage.statFactors.Add(modifier);
         }
     }
 }
