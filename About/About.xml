@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>The Secret of Anima - Cairns and Totems</name>
+	<author>Nuff</author>
+	<packageId>tsoa.totems</packageId>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<description>Cairns and Totems</description>
+	<modDependencies>
+		<li>
+			<packageId>tsoa.core</packageId>
+			<displayName>The Secret of Anima - Core</displayName>
+		</li>
+	</modDependencies>
+</ModMetaData>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<ThingDef ParentName="BuildingBase" Abstract="True" Name="TSOA_AnimusCairnBase">
+		<statBases>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<Beauty>5</Beauty>
+			<WorkToBuild>4000</WorkToBuild>
+		</statBases>
+		<building>
+			<isEdifice>true</isEdifice>
+		</building>
+		<thingClass>tsoa.totems.Building_AnimusCairn</thingClass>
+		<size>(1, 1)</size>
+		<fillPercent>0.40</fillPercent>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>42</pathCost>
+		<canOverlapZones>true</canOverlapZones>
+		<tickerType>Rare</tickerType>
+		<comps>
+			<li Class="tsoa.core.CompProperties_GroupedFacility">
+				<categoryTag>TSOA_AnimusCairn</categoryTag>
+				<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>tsoa.core.PlaceWorker_ShowGroupedFacilitiesConnections</li>
+		</placeWorkers>
+		<designationCategory>Misc</designationCategory>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnMentalBreakThreshold</defName>
+		<label>animus cairn of harmony</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1, 1)</drawSize>
+			<shadowData>
+				<volume>(1, 0.45, 2)</volume>
+			</shadowData>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<isOffset>true</isOffset>
+				<statDef>MentalBreakThreshold</statDef>
+				<value>-0.03</value>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnMoveSpeed</defName>
+		<label>animus cairn of celerity</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1, 1)</drawSize>
+			<shadowData>
+				<volume>(1, 0.45, 2)</volume>
+			</shadowData>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<isOffset>true</isOffset>
+				<statDef>MoveSpeed</statDef>
+				<value>0.3</value>
+			</li>
+		</modExtensions>
+	</ThingDef>
+</Defs>

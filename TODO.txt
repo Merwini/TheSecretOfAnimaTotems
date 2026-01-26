@@ -1,0 +1,21 @@
+Plants:
+	- anima sapling
+		- mini version of anima tree, that you can have multiple of
+		- can link animus cairns, to buff pawns meditating near them (limit the number of linkables, to encourage player to specialize)
+		- does not produce resources
+		- lesser anima scream
+
+Buildings
+	- Animus cairns, structures made from jade and anima (bark?) that have effects on pawns that meditate near the linked anima sapling, probably as a temporary hediff
+		- serenity, reduces mental break threshold
+		- zeal, increases combat abilities
+		- 
+	- Animus totems, structures made from jade that have various effects on the linked anima tree, or colony-wide effects (again, limit number of linkables to encourage player to specialize their colony)
+		- maybe allow player to increase linkable cap, like deathrest capacity serum does
+		- generosity, increases production of anima bark
+		- persistence, makes buffs from cairns last longer
+
+
+Code stuff:
+	custom CompProperties_AffectedByFacilities that limits links
+	custom PlaceWorker for totems, one for cairns
