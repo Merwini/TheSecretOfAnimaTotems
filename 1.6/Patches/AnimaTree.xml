@@ -13,9 +13,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="tsoa.core.CompProperties_SpecialMeditationFocus"]</xpath>
+		<xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="tsoa.core.CompProperties_SpecialMeditationFocus_Anima"]</xpath>
 		<value>
-			<li Class="tsoa.totems.CompProperties_SpecialMeditationFocus_Anima">
+			<li Class="tsoa.totems.CompProperties_SpecialMeditationFocus_AnimaTotem">
 				<requiredFocusType>Natural</requiredFocusType>
 			</li>
 		</value>

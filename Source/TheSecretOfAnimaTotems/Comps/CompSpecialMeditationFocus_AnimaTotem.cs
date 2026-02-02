@@ -10,7 +10,7 @@ using Verse;
 
 namespace tsoa.totems
 {
-    public class CompSpecialMeditationFocus_Anima : CompSpecialMeditationFocus
+    public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_Anima
     {
         private const int TicksUntilEffect = 2500;
         private const int ResetPawnProgressAfterTicks = 120;
