@@ -13,7 +13,13 @@
 			<Flammability>0</Flammability>
 			<Beauty>5</Beauty>
 			<WorkToBuild>4000</WorkToBuild>
+			<Mass>75</Mass>
 		</statBases>
+		<designationCategory>Misc</designationCategory>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
 		<building>
 			<isEdifice>true</isEdifice>
 		</building>
@@ -34,7 +40,6 @@
 		<placeWorkers>
 			<li>tsoa.core.PlaceWorker_ShowGroupedFacilitiesConnections</li>
 		</placeWorkers>
-		<designationCategory>Misc</designationCategory>
 	</ThingDef>
 
 	<!-- Job Specific -->
