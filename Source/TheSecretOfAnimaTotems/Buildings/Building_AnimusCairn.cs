@@ -6,69 +6,68 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+public class Building_AnimusCairn : Building
 {
-    public class Building_AnimusCairn : Building
+    private CairnEffectExtension effectExtension;
+    public CairnEffectExtension EffectExtension
     {
-        private CairnEffectExtension effectExtension;
-        public CairnEffectExtension EffectExtension
+        get
         {
-            get
+            if (effectExtension == null)
             {
-                if (effectExtension == null)
+                CairnEffectExtension extension = def.GetModExtension<CairnEffectExtension>();
+                if (extension == null)
                 {
-                    CairnEffectExtension extension = def.GetModExtension<CairnEffectExtension>();
-                    if (extension == null)
-                    {
-                        Log.Error($"Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
-                        extension = new CairnEffectExtension();
-                    }
-                    else
-                    {
-                        effectExtension = extension;
-                    }
+                    Log.Error($"Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
+                    extension = new CairnEffectExtension();
                 }
-                return effectExtension;
+                else
+                {
+                    effectExtension = extension;
+                }
+            }
+            return effectExtension;
+        }
+    }
+
+    public void ApplyCairnEffect(HediffStage stage)
+    {
+        CairnEffectExtension extension = EffectExtension;
+
+        if (!extension.statOffsets.NullOrEmpty())
+        {
+            foreach (StatModifier modifier in extension.statOffsets)
+            {
+                AddOrUpdateModifier(ref stage.statOffsets, modifier);
             }
         }
 
-        public void ApplyCairnEffect(HediffStage stage)
+        if (!extension.statFactors.NullOrEmpty())
         {
-            CairnEffectExtension extension = EffectExtension;
-
-            if (!extension.statOffsets.NullOrEmpty())
+            foreach (StatModifier modifier in extension.statFactors)
             {
-                foreach (StatModifier modifier in extension.statOffsets)
-                {
-                    AddOrUpdateModifier(stage.statOffsets, modifier);
-                }
-            }
-
-            if (!extension.statFactors.NullOrEmpty())
-            {
-                foreach (StatModifier modifier in extension.statFactors)
-                {
-                    AddOrUpdateModifier(stage.statFactors, modifier);
-                }
+                AddOrUpdateModifier(ref stage.statFactors, modifier);
             }
         }
+    }
 
-        void AddOrUpdateModifier(List<StatModifier> list, StatModifier mod)
+    void AddOrUpdateModifier(ref List<StatModifier> list, StatModifier mod)
+    {
+        if (list == null)
         {
-            if (list == null)
-            {
-                list = new List<StatModifier>();
-            }
+            list = new List<StatModifier>();
+        }
 
-            var existing = list.FirstOrDefault(so => so.stat == mod.stat);
-            if (existing != null)
-            {
-                existing.value += mod.value;
-            }
-            else
-            {
-                list.Add(mod);
-            }
+        var existing = list.FirstOrDefault(sm => sm.stat == mod.stat);
+        if (existing != null)
+        {
+            existing.value += mod.value;
+        }
+        else
+        {
+            list.Add(new StatModifier {stat = mod.stat, value = mod.value });
         }
     }
 }

@@ -6,109 +6,108 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace tsoa.totems
+namespace tsoa.totems;
+
+public class Hediff_CairnEffect : HediffWithComps
 {
-    public class Hediff_CairnEffect : HediffWithComps
+    private List<StatModifier> statOffsets;
+    private List<StatModifier> statFactors;
+
+    private HediffStage curStage;
+    public override HediffStage CurStage
     {
-        private List<StatModifier> statOffsets;
-        private List<StatModifier> statFactors;
-
-        private HediffStage curStage;
-        public override HediffStage CurStage
+        get
         {
-            get
+            if (curStage == null)
             {
-                if (curStage == null)
+                curStage = new HediffStage();
+                // TODO check if these need to be made null safe
+                curStage.statOffsets = statOffsets;
+                curStage.statFactors = statFactors;
+            }
+            return curStage;
+        }
+    }
+
+    public void StoreStatModifiers(List<StatModifier> statOffsets, List<StatModifier> statFactors)
+    {
+        this.statOffsets = statOffsets;
+        this.statFactors = statFactors;
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+
+        List<StatDef> statOffsetDefs = null;
+        List<float> statOffsetValues = null;
+        List<StatDef> statFactorDefs = null;
+        List<float> statFactorValues = null;
+
+        if (Scribe.mode == LoadSaveMode.Saving)
+        {
+            statOffsetDefs = new List<StatDef>();
+            statOffsetValues = new List<float>();
+            statFactorDefs = new List<StatDef>();
+            statFactorValues = new List<float>();
+
+            if (!statOffsets.NullOrEmpty())
+            {
+                foreach (StatModifier statModifier in statOffsets)
                 {
-                    curStage = new HediffStage();
-                    // TODO check if these need to be made null safe
-                    curStage.statOffsets = statOffsets;
-                    curStage.statFactors = statFactors;
+                    statOffsetDefs.Add(statModifier.stat);
+                    statOffsetValues.Add(statModifier.value);
                 }
-                return curStage;
+            }
+            if (!statFactors.NullOrEmpty())
+            {
+                foreach (StatModifier statModifier in statFactors)
+                {
+                    statFactorDefs.Add(statModifier.stat);
+                    statFactorValues.Add(statModifier.value);
+                }
             }
         }
 
-        public void StoreStatModifiers(List<StatModifier> statOffsets, List<StatModifier> statFactors)
+        Scribe_Collections.Look(ref statOffsetDefs, "statOffsetDefs", LookMode.Def);
+        Scribe_Collections.Look(ref statOffsetValues, "statOffsetValues", LookMode.Value);
+        Scribe_Collections.Look(ref statFactorDefs, "statFactorDefs", LookMode.Def);
+        Scribe_Collections.Look(ref statFactorValues, "statFactorValues", LookMode.Value);
+
+        if (Scribe.mode == LoadSaveMode.LoadingVars)
         {
-            this.statOffsets = statOffsets;
-            this.statFactors = statFactors;
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-
-            List<StatDef> statOffsetDefs = null;
-            List<float> statOffsetValues = null;
-            List<StatDef> statFactorDefs = null;
-            List<float> statFactorValues = null;
-
-            if (Scribe.mode == LoadSaveMode.Saving)
+            if (!statOffsetDefs.NullOrEmpty())
             {
-                statOffsetDefs = new List<StatDef>();
-                statOffsetValues = new List<float>();
-                statFactorDefs = new List<StatDef>();
-                statFactorValues = new List<float>();
-
-                if (!statOffsets.NullOrEmpty())
+                if (statOffsets == null)
                 {
-                    foreach (StatModifier statModifier in statOffsets)
-                    {
-                        statOffsetDefs.Add(statModifier.stat);
-                        statOffsetValues.Add(statModifier.value);
-                    }
+                    statOffsets = new List<StatModifier>();
                 }
-                if (!statFactors.NullOrEmpty())
+
+                for (int i = 0; i < statOffsetDefs.Count; i++)
                 {
-                    foreach (StatModifier statModifier in statFactors)
-                    {
-                        statFactorDefs.Add(statModifier.stat);
-                        statFactorValues.Add(statModifier.value);
-                    }
+                    StatModifier sm = new StatModifier();
+                    sm.stat = statOffsetDefs[i];
+                    sm.value = statOffsetValues[i];
+                    statOffsets.Add(sm);
+                }
+            }
+            if (!statFactorDefs.NullOrEmpty())
+            {
+                if (statFactors == null)
+                {
+                    statFactors = new List<StatModifier>();
+                }
+
+                for (int i = 0; i < statFactorDefs.Count; i++)
+                {
+                    StatModifier sm = new StatModifier();
+                    sm.stat = statFactorDefs[i];
+                    sm.value = statFactorValues[i];
+                    statFactors.Add(sm);
                 }
             }
 
-            Scribe_Collections.Look(ref statOffsetDefs, "statOffsetDefs", LookMode.Def);
-            Scribe_Collections.Look(ref statOffsetValues, "statOffsetValues", LookMode.Value);
-            Scribe_Collections.Look(ref statFactorDefs, "statFactorDefs", LookMode.Def);
-            Scribe_Collections.Look(ref statFactorValues, "statFactorValues", LookMode.Value);
-
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
-            {
-                if (!statOffsetDefs.NullOrEmpty())
-                {
-                    if (statOffsets == null)
-                    {
-                        statOffsets = new List<StatModifier>();
-                    }
-
-                    for (int i = 0; i < statOffsetDefs.Count; i++)
-                    {
-                        StatModifier sm = new StatModifier();
-                        sm.stat = statOffsetDefs[i];
-                        sm.value = statOffsetValues[i];
-                        statOffsets.Add(sm);
-                    }
-                }
-                if (!statFactorDefs.NullOrEmpty())
-                {
-                    if (statFactors == null)
-                    {
-                        statFactors = new List<StatModifier>();
-                    }
-
-                    for (int i = 0; i < statFactorDefs.Count; i++)
-                    {
-                        StatModifier sm = new StatModifier();
-                        sm.stat = statFactorDefs[i];
-                        sm.value = statFactorValues[i];
-                        statFactors.Add(sm);
-                    }
-                }
-
-                curStage = null;
-            }
+            curStage = null;
         }
     }
 }
