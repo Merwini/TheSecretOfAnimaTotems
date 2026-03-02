@@ -37,22 +37,7 @@
 		<designationCategory>Misc</designationCategory>
 	</ThingDef>
 
-	<ThingDef ParentName="TSOA_AnimusCairnBase">
-		<defName>TSOA_CairnMentalBreakThreshold</defName>
-		<label>animus cairn of serenity</label>
-		<description>A cairn of carved jade stones</description>
-		<graphicData>
-			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
-		</graphicData>
-		<modExtensions>
-			<li Class="tsoa.totems.CairnEffectExtension">
-				<isOffset>true</isOffset>
-				<modifiers>
-					<MentalBreakThreshold>-0.03</MentalBreakThreshold>
-				</modifiers>
-			</li>
-		</modExtensions>
-	</ThingDef>
+	<!-- Job Specific -->
 
 	<ThingDef ParentName="TSOA_AnimusCairnBase">
 		<defName>TSOA_CairnMining</defName>
@@ -63,15 +48,186 @@
 		</graphicData>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
-				<isOffset>true</isOffset>
-				<modifiers>
+				<statOffsets>
 					<MiningSpeed>0.1</MiningSpeed>
 					<MiningYield>0.1</MiningYield>
-				</modifiers>
+				</statOffsets>
 			</li>
 		</modExtensions>
 	</ThingDef>
 
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnFarming</defName>
+		<label>animus cairn of cultivation</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<PlantWorkSpeed>0.1</PlantWorkSpeed>
+					<PlantHarvestYield>0.1</PlantHarvestYield>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnAnimals</defName>
+		<label>animus cairn of husbandry</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<AnimalGatherSpeed>0.1</AnimalGatherSpeed>
+					<AnimalGatherYield>0.1</AnimalGatherYield>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnMedical</defName>
+		<label>animus cairn of healing</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<MedicalTendSpeed>0.1</MedicalTendSpeed>
+					<MedicalTendQuality>0.1</MedicalTendQuality>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnCooking</defName>
+		<label>animus cairn of providing</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<CookSpeed>0.1</CookSpeed>
+					<FoodPoisonChance>-0.1</FoodPoisonChance>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnResearch</defName>
+		<label>animus cairn of discovery</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<ResearchSpeedFactor>0.1</ResearchSpeedFactor>
+					<EntityStudyRate MayRequire="Ludeon.RimWorld.Anomaly">0.1</EntityStudyRate>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- One for crafting? -->
+	
+	<!-- Combat -->
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnTough</defName>
+		<label>animus cairn of enduring</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statFactors>
+					<IncomingDamageFactor>0.8</IncomingDamageFactor>
+				</statFactors>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnPain</defName>
+		<label>animus cairn of abiding</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<PainShockThreshold>0.1</PainShockThreshold>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnMelee</defName>
+		<label>animus cairn of frenzy</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statFactors>
+					<MeleeCooldownFactor>0.8</MeleeCooldownFactor>
+				</statFactors>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnShooting</defName>
+		<label>animus cairn of barraging</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<ShootingAccuracyPawn>5</ShootingAccuracyPawn>
+					<AimingDelayFactor>-0.25</AimingDelayFactor>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- General stats -->
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnMentalBreakThreshold</defName>
+		<label>animus cairn of serenity</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<statOffsets>
+					<MentalBreakThreshold>-0.03</MentalBreakThreshold>
+				</statOffsets>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
 	<ThingDef ParentName="TSOA_AnimusCairnBase">
 		<defName>TSOA_CairnMoveSpeed</defName>
 		<label>animus cairn of celerity</label>
@@ -81,10 +237,9 @@
 		</graphicData>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
-				<isOffset>true</isOffset>
-				<modifiers>
+				<statOffsets>
 					<MoveSpeed>0.3</MoveSpeed>
-				</modifiers>
+				</statOffsets>
 			</li>
 		</modExtensions>
 	</ThingDef>

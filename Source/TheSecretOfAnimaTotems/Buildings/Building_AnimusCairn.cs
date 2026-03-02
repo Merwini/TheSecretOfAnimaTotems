@@ -35,13 +35,17 @@ namespace tsoa.totems
         {
             CairnEffectExtension extension = EffectExtension;
 
-            foreach (StatModifier modifier in extension.modifiers)
+            if (!extension.statOffsets.NullOrEmpty())
             {
-                if (extension.isOffset)
+                foreach (StatModifier modifier in extension.statOffsets)
                 {
                     stage.statOffsets.Add(modifier);
                 }
-                else if (extension.isFactor)
+            }
+
+            if (!extension.statFactors.NullOrEmpty())
+            {
+                foreach (StatModifier modifier in extension.statFactors)
                 {
                     stage.statFactors.Add(modifier);
                 }
