@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<ThingDef ParentName="BuildingBase" Abstract="True" Name="TSOA_AnimusCairnBase">
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1, 1)</drawSize>
+			<shadowData>
+				<volume>(1, 0.45, 2)</volume>
+			</shadowData>
+		</graphicData>
 		<statBases>
 			<MaxHitPoints>250</MaxHitPoints>
 			<Flammability>0</Flammability>
@@ -32,21 +39,35 @@
 
 	<ThingDef ParentName="TSOA_AnimusCairnBase">
 		<defName>TSOA_CairnMentalBreakThreshold</defName>
-		<label>animus cairn of harmony</label>
+		<label>animus cairn of serenity</label>
 		<description>A cairn of carved jade stones</description>
 		<graphicData>
 			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1, 1)</drawSize>
-			<shadowData>
-				<volume>(1, 0.45, 2)</volume>
-			</shadowData>
 		</graphicData>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
 				<isOffset>true</isOffset>
-				<statDef>MentalBreakThreshold</statDef>
-				<value>-0.03</value>
+				<modifiers>
+					<MentalBreakThreshold>-0.03</MentalBreakThreshold>
+				</modifiers>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusCairnBase">
+		<defName>TSOA_CairnMining</defName>
+		<label>animus cairn of excavation</label>
+		<description>A cairn of carved jade stones</description>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+		<modExtensions>
+			<li Class="tsoa.totems.CairnEffectExtension">
+				<isOffset>true</isOffset>
+				<modifiers>
+					<MiningSpeed>0.1</MiningSpeed>
+					<MiningYield>0.1</MiningYield>
+				</modifiers>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -57,17 +78,13 @@
 		<description>A cairn of carved jade stones</description>
 		<graphicData>
 			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1, 1)</drawSize>
-			<shadowData>
-				<volume>(1, 0.45, 2)</volume>
-			</shadowData>
 		</graphicData>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
 				<isOffset>true</isOffset>
-				<statDef>MoveSpeed</statDef>
-				<value>0.3</value>
+				<modifiers>
+					<MoveSpeed>0.3</MoveSpeed>
+				</modifiers>
 			</li>
 		</modExtensions>
 	</ThingDef>

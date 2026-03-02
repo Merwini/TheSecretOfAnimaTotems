@@ -5,7 +5,7 @@
 		<defName>TSOA_CairnHediff</defName>
 		<hediffClass>tsoa.totems.Hediff_CairnEffect</hediffClass>
 		<label>animus cairn resonance</label>
-		<description>This person is being affected by resonance from one or more animus cairns linked the an anima tree that they meditated at.</description>
+		<description>This person is being affected by resonance from one or more animus cairns linked the anima tree that they meditated at.</description>
 		<isBad>false</isBad>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">

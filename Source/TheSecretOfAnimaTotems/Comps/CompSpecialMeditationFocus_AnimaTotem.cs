@@ -24,6 +24,7 @@ namespace tsoa.totems
 
         public override void DoMeditationTick(Pawn pawn)
         {
+            Log.Message("DoMeditationTick for " + pawn.Label);
             base.DoMeditationTick(pawn);
 
             if (pawn == null)

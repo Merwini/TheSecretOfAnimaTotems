@@ -34,17 +34,17 @@ namespace tsoa.totems
         public void ApplyCairnEffect(HediffStage stage)
         {
             CairnEffectExtension extension = EffectExtension;
-            StatModifier modifier = new StatModifier();
-            modifier.stat = extension.statDef;
-            modifier.value = extension.value;
 
-            if (extension.isOffset)
+            foreach (StatModifier modifier in extension.modifiers)
             {
-                stage.statOffsets.Add(modifier);
-            }
-            else if (extension.isFactor)
-            {
-                stage.statFactors.Add(modifier);
+                if (extension.isOffset)
+                {
+                    stage.statOffsets.Add(modifier);
+                }
+                else if (extension.isFactor)
+                {
+                    stage.statFactors.Add(modifier);
+                }
             }
         }
     }
