@@ -16,7 +16,6 @@ namespace tsoa.totems
         private const int ResetPawnProgressAfterTicks = 120;
         private Dictionary<int, MeditationTracker> trackerDict = new Dictionary<int, MeditationTracker>();
 
-
         public override void CompTickLong()
         {
             base.CompTickLong();
