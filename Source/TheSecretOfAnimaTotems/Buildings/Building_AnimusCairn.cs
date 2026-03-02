@@ -21,6 +21,7 @@ namespace tsoa.totems
                     if (extension == null)
                     {
                         Log.Error($"Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
+                        extension = new CairnEffectExtension();
                     }
                     else
                     {
@@ -39,7 +40,7 @@ namespace tsoa.totems
             {
                 foreach (StatModifier modifier in extension.statOffsets)
                 {
-                    stage.statOffsets.Add(modifier);
+                    AddOrUpdateModifier(stage.statOffsets, modifier);
                 }
             }
 
@@ -47,8 +48,26 @@ namespace tsoa.totems
             {
                 foreach (StatModifier modifier in extension.statFactors)
                 {
-                    stage.statFactors.Add(modifier);
+                    AddOrUpdateModifier(stage.statFactors, modifier);
                 }
+            }
+        }
+
+        void AddOrUpdateModifier(List<StatModifier> list, StatModifier mod)
+        {
+            if (list == null)
+            {
+                list = new List<StatModifier>();
+            }
+
+            var existing = list.FirstOrDefault(so => so.stat == mod.stat);
+            if (existing != null)
+            {
+                existing.value += mod.value;
+            }
+            else
+            {
+                list.Add(mod);
             }
         }
     }
