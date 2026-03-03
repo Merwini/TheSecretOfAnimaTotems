@@ -52,7 +52,9 @@ public abstract class Building_AnimusTotem : Building
         }
     }
 
-    public abstract void DoTotemEffect();
+    public virtual void DoTotemEffect()
+    {
+    }
 
     public virtual void EndTotemEffect()
     {
