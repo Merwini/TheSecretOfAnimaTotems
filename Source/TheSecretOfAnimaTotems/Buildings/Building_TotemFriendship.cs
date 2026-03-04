@@ -9,37 +9,54 @@ using HarmonyLib;
 
 namespace tsoa.totems;
 
-public class Building_TotemFriendship
+public class Building_TotemFriendship : Building_AnimusTotem
 {
-    static Dictionary<Building_TotemFriendship, int> activeTotems = new Dictionary<Building_TotemFriendship, int>();
+    List<Faction> affectableFactions;
+    private const int goodwillTicks = 30000; // half a day
+    private const int tickRate = 250; // rare
+    private const int maxGoodwillAboveNatural = 50; // arbitrary, TODO balance
+    private int ticksToNextGoodwill = goodwillTicks;
 
-    static int GoodwillOffset
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        get
+        affectableFactions = new List<Faction>();
+
+        foreach (Faction faction in Find.FactionManager.AllFactionsListForReading.Where(f => !f.def.permanentEnemy))
         {
-            int num = 0;
-
-            if (activeTotems.NullOrEmpty())
-                return num;
-
-            foreach (var kvp in activeTotems)
-            {
-                num = Math.Max(num, kvp.Value);
-            }
-
-            return num;
+            affectableFactions.Add(faction);
         }
+
+        base.SpawnSetup(map, respawningAfterLoad);
     }
 
-    [HarmonyPatch(typeof(GoodwillSituationManager), nameof(GoodwillSituationManager.GetNaturalGoodwill))]
-    static class Harmony_FriendShip
+    public override void TickRare()
     {
-        public static void Postfix(Faction other, ref int __result)
+        if (ticksToNextGoodwill > 0)
         {
-            if (other.def.permanentEnemy)
-                return;
-
-            __result = Math.Clamp(__result + GoodwillOffset, -100, 100);
+            ticksToNextGoodwill -= tickRate;
         }
+        else
+        {
+            for (int i = 0; i < affectableFactions.Count; i++)
+            {
+                Faction faction = affectableFactions[i];
+                Faction player = Faction.OfPlayer;
+                if (faction.GoodwillWith(player) < faction.NaturalGoodwill + maxGoodwillAboveNatural)
+                {
+                    faction.TryAffectGoodwillWith(Faction.OfPlayer, 1);
+                }
+            }
+
+            ticksToNextGoodwill = goodwillTicks;
+        }
+
+        base.TickRare();
+    }
+
+    public override void ExposeData()
+    {
+        Scribe_Values.Look(ref ticksToNextGoodwill, "ticksToNextGoodwill", goodwillTicks);
+
+        base.ExposeData();
     }
 }

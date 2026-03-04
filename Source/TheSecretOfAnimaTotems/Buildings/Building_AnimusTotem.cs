@@ -15,17 +15,10 @@ public abstract class Building_AnimusTotem : Building
     public float GrassConsumption => grassConsumption;
 
     private CompGroupedFacility compGF;
-    public CompGroupedFacility CompGF
-    {
-        get
-        {
-            if (compGF == null)
-            {
-                compGF = GetComp<CompGroupedFacility>();
-            }
-            return compGF;
-        }
-    }
+
+    private bool Linked => compGF.LinkedThings.Any();
+
+    private Thing linkedTree;
 
     private CompSpawnSubplant compSP;
     public CompSpawnSubplant CompSpawnSubplant
@@ -34,7 +27,7 @@ public abstract class Building_AnimusTotem : Building
         {
             if (compSP == null)
             {
-                List<Thing> linkedThings = CompGF.LinkedThings;
+                List<Thing> linkedThings = compGF.LinkedThings;
                 if (linkedThings.NullOrEmpty())
                     return null;
 
@@ -43,6 +36,7 @@ public abstract class Building_AnimusTotem : Building
                     CompSpawnSubplant comp = linkedThings[i].TryGetComp<CompSpawnSubplant>();
                     if (comp != null)
                     {
+                        linkedTree = linkedThings[i];
                         compSP = comp;
                         break;
                     }
@@ -52,11 +46,30 @@ public abstract class Building_AnimusTotem : Building
         }
     }
 
-    public virtual void DoTotemEffect()
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
+    {
+        compGF = GetComp<CompGroupedFacility>();
+
+        if (respawningAfterLoad && Linked)
+        {
+            CompSpawnSubplant CompSpawnSubplant; // TODO does this to just initialize it?
+        }
+
+        base.SpawnSetup(map, respawningAfterLoad);
+    }
+
+    public virtual void StartTotemEffect()
     {
     }
 
     public virtual void EndTotemEffect()
     {
+    }
+
+    public override void ExposeData()
+    {
+
+
+        base.ExposeData();
     }
 }
