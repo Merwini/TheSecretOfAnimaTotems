@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase" Abstract="True" Name="TSOA_AnimusTotemBase">
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1, 1)</drawSize>
+			<shadowData>
+				<volume>(1, 0.45, 2)</volume>
+			</shadowData>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>450</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<Beauty>10</Beauty>
+			<WorkToBuild>16000</WorkToBuild>
+			<Mass>300</Mass>
+		</statBases>
+		<designationCategory>Misc</designationCategory>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+		<building>
+			<isEdifice>true</isEdifice>
+		</building>
+		<thingClass>tsoa.totems.Building_AnimusTotem</thingClass>
+		<size>(1, 1)</size>
+		<fillPercent>1</fillPercent>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>42</pathCost>
+		<canOverlapZones>true</canOverlapZones>
+		<tickerType>Rare</tickerType>
+		<comps>
+			<li Class="tsoa.core.CompProperties_GroupedFacility">
+				<categoryTag>TSOA_AnimusTotemCat</categoryTag>
+				<maxDistance>6</maxDistance>
+				<canPlaceWithoutLink>false</canPlaceWithoutLink>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>tsoa.core.PlaceWorker_ShowGroupedFacilitiesConnections</li>
+		</placeWorkers>
+	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusTotemBase">
+		<defName>TSOA_TotemFriendship</defName>
+		<label>animus totem of friendship</label>
+		<description>A totem of carved jade stones</description>
+		<thingClass>tsoa.totems.Building_TotemFriendship</thingClass>
+		<graphicData>
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+	</ThingDef>
+	
+</Defs>

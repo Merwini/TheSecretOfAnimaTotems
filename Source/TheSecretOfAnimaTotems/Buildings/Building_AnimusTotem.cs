@@ -50,11 +50,6 @@ public abstract class Building_AnimusTotem : Building
     {
         compGF = GetComp<CompGroupedFacility>();
 
-        if (respawningAfterLoad && Linked)
-        {
-            CompSpawnSubplant CompSpawnSubplant; // TODO does this to just initialize it?
-        }
-
         base.SpawnSetup(map, respawningAfterLoad);
     }
 

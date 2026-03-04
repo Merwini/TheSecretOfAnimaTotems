@@ -33,8 +33,9 @@
 		<tickerType>Rare</tickerType>
 		<comps>
 			<li Class="tsoa.core.CompProperties_GroupedFacility">
-				<categoryTag>TSOA_AnimusCairn</categoryTag>
-				<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+				<categoryTag>TSOA_AnimusCairnCat</categoryTag>
+				<maxDistance>4</maxDistance>
+				<canPlaceWithoutLink>false</canPlaceWithoutLink>
 			</li>
 		</comps>
 		<placeWorkers>

@@ -14,16 +14,21 @@ public class Building_TotemFriendship : Building_AnimusTotem
     List<Faction> affectableFactions;
     private const int goodwillTicks = 30000; // half a day
     private const int tickRate = 250; // rare
-    private const int maxGoodwillAboveNatural = 50; // arbitrary, TODO balance
+    private const int maxGoodwillAboveNatural = 100; // arbitrary, TODO balance. Factions like gentle tribe have -60 natural, rough have -180
     private int ticksToNextGoodwill = goodwillTicks;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         affectableFactions = new List<Faction>();
 
-        foreach (Faction faction in Find.FactionManager.AllFactionsListForReading.Where(f => !f.def.permanentEnemy))
+        foreach (Faction faction in Find.FactionManager.AllFactionsListForReading.Where(f => !f.def.permanentEnemy && !f.def.hidden && f != Faction.OfPlayer))
         {
             affectableFactions.Add(faction);
+        }
+
+        foreach (var faction in affectableFactions)
+        {
+            Log.Message("affectable: " + faction.Name);
         }
 
         base.SpawnSetup(map, respawningAfterLoad);
@@ -41,6 +46,7 @@ public class Building_TotemFriendship : Building_AnimusTotem
             {
                 Faction faction = affectableFactions[i];
                 Faction player = Faction.OfPlayer;
+                Log.Message($"faction: {faction.Name}, goodwill: {faction.GoodwillWith(player)}, natural: {faction.NaturalGoodwill}");
                 if (faction.GoodwillWith(player) < faction.NaturalGoodwill + maxGoodwillAboveNatural)
                 {
                     faction.TryAffectGoodwillWith(Faction.OfPlayer, 1);
