@@ -13,8 +13,7 @@ public class Building_TotemFriendship : Building_AnimusTotem
 {
     List<Faction> affectableFactions;
     private const int goodwillTicks = 30000; // half a day
-    private const int tickRate = 250; // rare
-    private const int maxGoodwillAboveNatural = 100; // arbitrary, TODO balance. Factions like gentle tribe have -60 natural, rough have -180
+    private const int maxGoodwillAboveNatural = 100; // arbitrary, TODO balance. Most factions start well above their natural goodwill. Factions like gentle tribe have -60 natural, rough have -180
     private int ticksToNextGoodwill = goodwillTicks;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -25,20 +24,14 @@ public class Building_TotemFriendship : Building_AnimusTotem
         {
             affectableFactions.Add(faction);
         }
-
-        foreach (var faction in affectableFactions)
-        {
-            Log.Message("affectable: " + faction.Name);
-        }
-
         base.SpawnSetup(map, respawningAfterLoad);
     }
 
-    public override void TickRare()
+    public override void DoTotemEffect()
     {
         if (ticksToNextGoodwill > 0)
         {
-            ticksToNextGoodwill -= tickRate;
+            ticksToNextGoodwill -= 1;
         }
         else
         {
@@ -46,17 +39,16 @@ public class Building_TotemFriendship : Building_AnimusTotem
             {
                 Faction faction = affectableFactions[i];
                 Faction player = Faction.OfPlayer;
-                Log.Message($"faction: {faction.Name}, goodwill: {faction.GoodwillWith(player)}, natural: {faction.NaturalGoodwill}");
                 if (faction.GoodwillWith(player) < faction.NaturalGoodwill + maxGoodwillAboveNatural)
                 {
-                    faction.TryAffectGoodwillWith(Faction.OfPlayer, 1);
+                    faction.TryAffectGoodwillWith(Faction.OfPlayer, 1, canSendMessage: false);
                 }
             }
 
             ticksToNextGoodwill = goodwillTicks;
         }
 
-        base.TickRare();
+        base.DoTotemEffect();
     }
 
     public override void ExposeData()

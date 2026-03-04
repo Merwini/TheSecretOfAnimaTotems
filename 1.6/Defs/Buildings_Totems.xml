@@ -31,12 +31,22 @@
 		<passability>PassThroughOnly</passability>
 		<pathCost>42</pathCost>
 		<canOverlapZones>true</canOverlapZones>
-		<tickerType>Rare</tickerType>
+		<tickerType>Normal</tickerType>
 		<comps>
 			<li Class="tsoa.core.CompProperties_GroupedFacility">
 				<categoryTag>TSOA_AnimusTotemCat</categoryTag>
 				<maxDistance>6</maxDistance>
 				<canPlaceWithoutLink>false</canPlaceWithoutLink>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelConsumptionRate>2.0</fuelConsumptionRate>
+				<fuelCapacity>20.0</fuelCapacity>
+				<fuelFilter>
+					<thingDefs>
+						<li>TSOA_AnimaGrassResource</li>
+					</thingDefs>
+				</fuelFilter>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 			</li>
 		</comps>
 		<placeWorkers>

@@ -11,60 +11,67 @@ namespace tsoa.totems;
 
 public abstract class Building_AnimusTotem : Building
 {
-    private float grassConsumption = 0.5f;
-    public float GrassConsumption => grassConsumption;
+    private CompGroupedFacility compGroupedFacility;
+    private CompRefuelable compRefuelable;
 
-    private CompGroupedFacility compGF;
-
-    private bool Linked => compGF.LinkedThings.Any();
+    private bool Linked => compGroupedFacility.LinkedThings.Any();
 
     private Thing linkedTree;
 
-    private CompSpawnSubplant compSP;
-    public CompSpawnSubplant CompSpawnSubplant
-    {
-        get
-        {
-            if (compSP == null)
-            {
-                List<Thing> linkedThings = compGF.LinkedThings;
-                if (linkedThings.NullOrEmpty())
-                    return null;
+    // Decided to go with a CompRefuelable instead of taking directly from the tree
+    //private CompSpawnSubplant compSP;
+    //public CompSpawnSubplant CompSpawnSubplant
+    //{
+    //    get
+    //    {
+    //        if (compSP == null)
+    //        {
+    //            List<Thing> linkedThings = compGF.LinkedThings;
+    //            if (linkedThings.NullOrEmpty())
+    //                return null;
 
-                for (int i = 0; i < linkedThings.Count; i++)
-                {
-                    CompSpawnSubplant comp = linkedThings[i].TryGetComp<CompSpawnSubplant>();
-                    if (comp != null)
-                    {
-                        linkedTree = linkedThings[i];
-                        compSP = comp;
-                        break;
-                    }
-                }
-            }
-            return compSP;
-        }
-    }
+    //            for (int i = 0; i < linkedThings.Count; i++)
+    //            {
+    //                CompSpawnSubplant comp = linkedThings[i].TryGetComp<CompSpawnSubplant>();
+    //                if (comp != null)
+    //                {
+    //                    linkedTree = linkedThings[i];
+    //                    compSP = comp;
+    //                    break;
+    //                }
+    //            }
+    //        }
+    //        return compSP;
+    //    }
+    //}
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        compGF = GetComp<CompGroupedFacility>();
+        compGroupedFacility = GetComp<CompGroupedFacility>();
+        compRefuelable = GetComp<CompRefuelable>();
 
         base.SpawnSetup(map, respawningAfterLoad);
+    }
+
+    protected override void Tick()
+    {
+        if (compRefuelable.HasFuel)
+        {
+            DoTotemEffect();
+        }
+
+        base.Tick();
     }
 
     public virtual void StartTotemEffect()
     {
     }
 
-    public virtual void EndTotemEffect()
+    public virtual void DoTotemEffect()
     {
     }
 
-    public override void ExposeData()
+    public virtual void EndTotemEffect()
     {
-
-
-        base.ExposeData();
     }
 }
