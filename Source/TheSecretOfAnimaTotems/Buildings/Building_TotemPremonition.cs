@@ -68,6 +68,7 @@ public class Premonition : IExposable
         if (timeToLive > 0)
         {
             fireTick += delayTicks;
+            timeToLive--;
             return true;
         }
         return false;
