@@ -11,8 +11,8 @@ namespace tsoa.totems;
 
 public abstract class Building_AnimusTotem : Building
 {
-    private CompGroupedFacility compGroupedFacility;
-    private CompRefuelable compRefuelable;
+    internal CompGroupedFacility compGroupedFacility;
+    internal CompRefuelable compRefuelable;
 
     private bool Linked => compGroupedFacility.LinkedThings.Any();
 
