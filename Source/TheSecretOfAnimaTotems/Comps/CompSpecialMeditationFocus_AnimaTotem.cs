@@ -16,6 +16,13 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
     private const int ResetPawnProgressAfterTicks = 120;
     private Dictionary<int, MeditationTracker> trackerDict = new Dictionary<int, MeditationTracker>();
 
+    public override void PostSpawnSetup(bool respawningAfterLoad)
+    {
+        trackerDict ??= new Dictionary<int, MeditationTracker>();
+
+        base.PostSpawnSetup(respawningAfterLoad);
+    }
+
     public override void CompTickLong()
     {
         CleanDictionary();
@@ -65,7 +72,9 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
     private void CleanDictionary()
     {
         int now = Find.TickManager.TicksGame;
-        if (trackerDict.Count == 0) return;
+
+        if (trackerDict.Count == 0)
+            return;
 
         List<int> cleaningList = new List<int>();
         foreach (var kvp in trackerDict)
