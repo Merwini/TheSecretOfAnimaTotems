@@ -55,7 +55,7 @@ public abstract class Building_AnimusTotem : Building
         base.SpawnSetup(map, respawningAfterLoad);
     }
 
-    protected override void Tick()
+    public override void Tick()
     {
         if (compRefuelable.HasFuel)
         {

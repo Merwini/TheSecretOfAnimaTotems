@@ -13,7 +13,7 @@ public class Building_TotemTemper : Building_AnimusTotem
 {
     internal const int moodDivisor = 2; // arbitrary, TODO balance
 
-    protected override void Tick()
+    public override void Tick()
     { 
         if (!compRefuelable.HasFuel)
         {
