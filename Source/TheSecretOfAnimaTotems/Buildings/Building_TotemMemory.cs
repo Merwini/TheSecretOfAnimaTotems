@@ -9,32 +9,15 @@ using HarmonyLib;
 
 namespace tsoa.totems;
 
-[StaticConstructorOnStartup]
 public class Building_TotemMemory : Building_AnimusTotem
 {
-    internal static HashSet<Building_TotemMemory> activeTotems;
     internal const int lossDivisor = 2; // arbitrary, TODO balance
-
-    static Building_TotemMemory()
-    {
-        activeTotems = new HashSet<Building_TotemMemory>();
-    }
-
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
-    {
-        if (activeTotems == null)
-        {
-            activeTotems = new HashSet<Building_TotemMemory>(); // in the rare event that multiple totems exist
-        }
-
-        base.SpawnSetup(map, respawningAfterLoad);
-    }
 
     protected override void Tick()
     {
         if (!compRefuelable.HasFuel)
         {
-            activeTotems.Remove(this);
+            gameComp.activeMemory.Remove(this);
         }
 
         base.Tick();
@@ -42,15 +25,27 @@ public class Building_TotemMemory : Building_AnimusTotem
 
     public override void DoTotemEffect()
     {
-        activeTotems.Add(this);
+        gameComp.activeMemory.Add(this);
+    }
+
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    {
+        gameComp.activeMemory.Remove(this);
+        base.Destroy(mode);
+    }
+
+    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+    {
+        gameComp.activeMemory.Remove(this);
+        base.DeSpawn(mode);
     }
 
     [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]
     public static class Harmony_Memory
     {
-        public static void Prefix(float xp)
+        public static void Prefix(ref float xp)
         {
-            if (xp < 0 && activeTotems.Count != 0)
+            if (xp < 0 && GameComponent_TotemTracker.Instance?.activeMemory.Count != 0)
             {
                 xp /= lossDivisor;
             }

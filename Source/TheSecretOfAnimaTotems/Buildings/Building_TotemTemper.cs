@@ -9,32 +9,15 @@ using HarmonyLib;
 
 namespace tsoa.totems;
 
-[StaticConstructorOnStartup]
 public class Building_TotemTemper : Building_AnimusTotem
 {
-    internal static HashSet<Building_TotemTemper> activeTotems;
     internal const int moodDivisor = 2; // arbitrary, TODO balance
-
-    static Building_TotemTemper()
-    {
-        activeTotems = new HashSet<Building_TotemTemper>();
-    }
-
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
-    {
-        if (activeTotems == null)
-        {
-            activeTotems = new HashSet<Building_TotemTemper>();
-        }
-
-        base.SpawnSetup(map, respawningAfterLoad);
-    }
 
     protected override void Tick()
     { 
         if (!compRefuelable.HasFuel)
         {
-            activeTotems.Remove(this);
+            gameComp.activeTemper.Remove(this);
         }
 
         base.Tick();
@@ -42,7 +25,7 @@ public class Building_TotemTemper : Building_AnimusTotem
 
     public override void DoTotemEffect()
     {
-        activeTotems.Add(this);
+        gameComp.activeTemper.Add(this);
     }
 
     [HarmonyPatch(typeof(ThoughtDef), nameof(ThoughtDef.DurationTicks), MethodType.Getter)]
@@ -50,7 +33,7 @@ public class Building_TotemTemper : Building_AnimusTotem
     {
         public static void Postfix(ThoughtDef __instance, ref int __result)
         {
-            if (activeTotems.Count == 0)
+            if (GameComponent_TotemTracker.Instance.activeTemper.Count == 0)
                 return;
 
             List<ThoughtStage> stages = __instance.stages;
