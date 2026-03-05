@@ -1,6 +1,3 @@
 
 Totem effect ideas:
-	Memory - reduces skill loss
-	Mood - makes negative moodlets shorter, positive ones longer
-	Friendship - increases natural goodwill of factions
 	Temperature - offset map temperature closer to comfortable temp
