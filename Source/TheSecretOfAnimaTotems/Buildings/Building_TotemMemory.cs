@@ -9,10 +9,16 @@ using HarmonyLib;
 
 namespace tsoa.totems;
 
+[StaticConstructorOnStartup]
 public class Building_TotemMemory : Building_AnimusTotem
 {
     internal static HashSet<Building_TotemMemory> activeTotems;
     internal const int lossDivisor = 2; // arbitrary, TODO balance
+
+    static Building_TotemMemory()
+    {
+        activeTotems = new HashSet<Building_TotemMemory>();
+    }
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -39,12 +45,12 @@ public class Building_TotemMemory : Building_AnimusTotem
         activeTotems.Add(this);
     }
 
-    [HarmonyPatch (typeof(SkillRecord), nameof(SkillRecord.Learn))]
+    [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]
     public static class Harmony_Memory
     {
         public static void Prefix(float xp)
         {
-            if (xp < 0 && !activeTotems.NullOrEmpty())
+            if (xp < 0 && activeTotems.Count != 0)
             {
                 xp /= lossDivisor;
             }

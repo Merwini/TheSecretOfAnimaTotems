@@ -9,10 +9,16 @@ using HarmonyLib;
 
 namespace tsoa.totems;
 
+[StaticConstructorOnStartup]
 public class Building_TotemTemper : Building_AnimusTotem
 {
     internal static HashSet<Building_TotemTemper> activeTotems;
     internal const int moodDivisor = 2; // arbitrary, TODO balance
+
+    static Building_TotemTemper()
+    {
+        activeTotems = new HashSet<Building_TotemTemper>();
+    }
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -44,7 +50,7 @@ public class Building_TotemTemper : Building_AnimusTotem
     {
         public static void Postfix(ThoughtDef __instance, ref int __result)
         {
-            if (activeTotems.NullOrEmpty())
+            if (activeTotems.Count == 0)
                 return;
 
             List<ThoughtStage> stages = __instance.stages;

@@ -86,5 +86,16 @@
 			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
 		</graphicData>
 	</ThingDef>
+
+	<ThingDef ParentName="TSOA_AnimusTotemBase">
+		<defName>TSOA_TotemBounty</defName>
+		<label>animus totem of bounty</label>
+		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
+		<thingClass>tsoa.totems.Building_TotemBounty</thingClass>
+		<graphicData>
+			<!-- TODO replace with real texture -->
+			<texPath>Things/Building/Ruins/AncientHermeticCrate</texPath>
+		</graphicData>
+	</ThingDef>
 	
 </Defs>
