@@ -21,7 +21,6 @@ public class Hediff_CairnEffect : HediffWithComps
             if (curStage == null)
             {
                 curStage = new HediffStage();
-                // TODO check if these need to be made null safe
                 curStage.statOffsets = statOffsets;
                 curStage.statFactors = statFactors;
             }
