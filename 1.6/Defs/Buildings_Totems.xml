@@ -3,12 +3,14 @@
 
 	<ThingDef ParentName="BuildingBase" Abstract="True" Name="TSOA_AnimusTotemBase">
 		<graphicData>
-			<graphicClass>Graphic_Multi</graphicClass>
+			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(2, 2)</drawSize>
 			<shadowData>
 				<volume>(0.2, 0.35, 0.13)</volume>
 				<offset>(0,0,-0.25)</offset>
 			</shadowData>
+			<drawOffset>(0,0,0.5)</drawOffset>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>450</MaxHitPoints>
@@ -37,6 +39,7 @@
 		<pathCost>42</pathCost>
 		<canOverlapZones>true</canOverlapZones>
 		<tickerType>Normal</tickerType>
+		<defaultPlacingRot>North</defaultPlacingRot>
 		<comps>
 			<li Class="tsoa.core.CompProperties_GroupedFacility">
 				<categoryTag>TSOA_AnimusTotemCategory</categoryTag>
