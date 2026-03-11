@@ -5,12 +5,12 @@
 		<xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="tsoa.core.CompProperties_AffectedByGroupedFacilities"]/linkGroups</xpath>
 		<value>
 			<li Class="tsoa.core.FacilityLinkGroup">
-				<categoryTag>TSOA_AnimusCairnCat</categoryTag>
+				<categoryTag>TSOA_AnimusCairnCategory</categoryTag>
 				<label>animus cairns</label>
-				<maxLinks>4</maxLinks>
+				<maxLinks>3</maxLinks>
 			</li>
 			<li Class="tsoa.core.FacilityLinkGroup">
-				<categoryTag>TSOA_AnimusTotemCat</categoryTag>
+				<categoryTag>TSOA_AnimusTotemCategory</categoryTag>
 				<label>animus totems</label>
 				<maxLinks>1</maxLinks>
 			</li>

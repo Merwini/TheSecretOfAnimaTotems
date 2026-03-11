@@ -39,9 +39,9 @@
 		<tickerType>Normal</tickerType>
 		<comps>
 			<li Class="tsoa.core.CompProperties_GroupedFacility">
-				<categoryTag>TSOA_AnimusTotemCat</categoryTag>
+				<categoryTag>TSOA_AnimusTotemCategory</categoryTag>
 				<maxDistance>6</maxDistance>
-				<canPlaceWithoutLink>true</canPlaceWithoutLink>
+				<canPlaceWithoutLink>false</canPlaceWithoutLink>
 			</li>
 			<li Class="CompProperties_Refuelable">
 				<fuelConsumptionRate>2.0</fuelConsumptionRate>
@@ -109,13 +109,12 @@
 		</graphicData>
 	</ThingDef>
 
-	<ThingDef ParentName="TSOA_AnimusTotemBase">
+	<!--<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemTestOne</defName>
 		<label>animus totem of test</label>
 		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
 		<thingClass>tsoa.totems.Building_TotemPremonition</thingClass>
 		<graphicData>
-			<!-- TODO replace with real texture -->
 			<texPath>Things/Building/Totem/AnimusTotemCat</texPath>
 		</graphicData>
 	</ThingDef>
@@ -126,7 +125,6 @@
 		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
 		<thingClass>tsoa.totems.Building_TotemPremonition</thingClass>
 		<graphicData>
-			<!-- TODO replace with real texture -->
 			<texPath>Things/Building/Totem/AnimusTotemShark</texPath>
 		</graphicData>
 	</ThingDef>
@@ -137,9 +135,8 @@
 		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
 		<thingClass>tsoa.totems.Building_TotemPremonition</thingClass>
 		<graphicData>
-			<!-- TODO replace with real texture -->
 			<texPath>Things/Building/Totem/AnimusTotemMonkey</texPath>
 		</graphicData>
-	</ThingDef>
+	</ThingDef>-->
 	
 </Defs>
