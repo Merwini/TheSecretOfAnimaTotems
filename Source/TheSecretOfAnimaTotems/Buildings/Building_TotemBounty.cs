@@ -11,7 +11,7 @@ namespace tsoa.totems;
 
 public class Building_TotemBounty : Building_AnimusTotem
 {
-    internal const int growthRate = 2; // arbitrary, TODO balance
+    internal const float growthRate = 1.5f;
 
     public override void Tick()
     {
