@@ -11,8 +11,6 @@ namespace tsoa.totems;
 
 public class Building_TotemTemper : Building_AnimusTotem
 {
-    internal const int moodDivisor = 2; // arbitrary, TODO balance
-
     public override void Tick()
     { 
         if (!compRefuelable.HasFuel)
@@ -28,26 +26,30 @@ public class Building_TotemTemper : Building_AnimusTotem
         gameComp.activeTemper.Add(this);
     }
 
-    [HarmonyPatch(typeof(ThoughtDef), nameof(ThoughtDef.DurationTicks), MethodType.Getter)]
+    [HarmonyPatch(typeof(Thought), nameof(Thought.DurationTicks), MethodType.Getter)]
     public static class Harmony_Temper
     {
-        public static void Postfix(ThoughtDef __instance, ref int __result)
+        public static void Postfix(Thought __instance, ref int __result)
         {
+            // Is this the most efficient order for the early returns?
+            if (!__instance.pawn.IsPlayerControlled)
+                return;
+
             if (GameComponent_TotemTracker.Instance.activeTemper.Count == 0)
                 return;
 
-            List<ThoughtStage> stages = __instance.stages;
-            if (stages.NullOrEmpty())
+            ThoughtStage stage = __instance.CurStage;
+            if (stage == null)
                 return;
 
-            float mood = stages[0].baseMoodEffect;
+            float mood = stage.baseMoodEffect;
             if (mood < 0)
             {
-                __result = __result / 2;
+                __result = (int)(__result / 2); // TODO balance
             }
             else
             {
-                __result = __result * 2;
+                __result = (int)(__result * 1.5f);
             }
         }
     }
