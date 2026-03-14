@@ -218,7 +218,7 @@
 		<label>animus cairn of frenzy</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator attack more swiftly.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnTwo</texPath>
+			<texPath>Things/Building/Cairn/AnimusCairnMelee</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
