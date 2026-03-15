@@ -180,7 +180,7 @@
 		<label>animus cairn of enduring</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn protects the meditator from harm.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnTwo</texPath>
+			<texPath>Things/Building/Cairn/AnimusCairnTough</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnThree</li>
@@ -199,7 +199,7 @@
 		<label>animus cairn of abiding</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator endure greater pain.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnTwo</texPath>
+			<texPath>Things/Building/Cairn/AnimusCairnPain</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnOne</li>
@@ -237,7 +237,7 @@
 		<label>animus cairn of barraging</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator handle ranged weapons more skillfully.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnTwo</texPath>
+			<texPath>Things/Building/Cairn/AnimusCairnRanged</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
