@@ -56,7 +56,7 @@
 		<label>animus cairn of excavation</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the mining capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnMining</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMining</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnOne</li>
@@ -76,7 +76,7 @@
 		<label>animus cairn of cultivation</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the farming capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnFarming</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnFarming</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnOne</li>
@@ -96,7 +96,7 @@
 		<label>animus cairn of husbandry</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the animal handling capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnAnimals</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnAnimals</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
@@ -116,7 +116,7 @@
 		<label>animus cairn of healing</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the medical capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnMedical</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMedical</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnThree</li>
@@ -136,7 +136,7 @@
 		<label>animus cairn of providing</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the cooking capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnCooking</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnCooking</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnThree</li>
@@ -156,7 +156,7 @@
 		<label>animus cairn of discovery</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the researching capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnResearching</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnResearching</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
@@ -180,7 +180,7 @@
 		<label>animus cairn of enduring</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn protects the meditator from harm.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnTough</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnTough</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnThree</li>
@@ -199,7 +199,7 @@
 		<label>animus cairn of abiding</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator endure greater pain.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnPain</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnPain</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnOne</li>
@@ -218,7 +218,7 @@
 		<label>animus cairn of frenzy</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator attack more swiftly.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnMelee</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMelee</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
@@ -237,7 +237,7 @@
 		<label>animus cairn of barraging</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator handle ranged weapons more skillfully.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnRanged</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnRanged</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
@@ -259,7 +259,7 @@
 		<label>animus cairn of serenity</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator better endure the harshness of the world.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnMentalBreak</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMentalBreak</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
@@ -278,7 +278,7 @@
 		<label>animus cairn of celerity</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator move more quickly.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnMoveSpeed</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMoveSpeed</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnOne</li>
@@ -297,7 +297,7 @@
 		<label>animus cairn of industry</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels energy from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn helps the meditator work more quickly.</description>
 		<graphicData>
-			<texPath>Things/Building/Cairn/AnimusCairnWorkSpeed</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnWorkSpeed</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnThree</li>
