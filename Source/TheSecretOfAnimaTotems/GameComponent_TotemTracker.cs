@@ -17,6 +17,7 @@ public class GameComponent_TotemTracker : GameComponent
     public HashSet<Building_TotemTemper> activeTemper;
     public Dictionary<Map, Building_TotemBounty> activeBounty;
     public Dictionary<Map, Building_TotemPremonition> activePremonition;
+    public HashSet<Building_TotemBloodthirst> activeBloodthirst;
 
     public List<Premonition> premonitions;
 
@@ -72,6 +73,7 @@ public class GameComponent_TotemTracker : GameComponent
         activeTemper ??= new HashSet<Building_TotemTemper>();
         activeBounty ??= new Dictionary<Map, Building_TotemBounty>();
         activePremonition ??= new Dictionary<Map, Building_TotemPremonition>();
+        activeBloodthirst ??= new HashSet<Building_TotemBloodthirst>();
 
         premonitions ??= new List<Premonition>();
 
@@ -131,6 +133,7 @@ public class GameComponent_TotemTracker : GameComponent
         Scribe_Collections.Look(ref activeTemper, "activeTemper", LookMode.Reference);
         Scribe_Collections.Look(ref activeBounty, "activeBounty", LookMode.Reference, LookMode.Reference);
         Scribe_Collections.Look(ref activePremonition, "activePremonition", LookMode.Reference, LookMode.Reference);
+        Scribe_Collections.Look(ref activeBloodthirst, "activeBloodthirst", LookMode.Reference);
 
         Scribe_Collections.Look(ref premonitions, "premonitions", LookMode.Deep);
 

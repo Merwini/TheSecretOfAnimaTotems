@@ -12,5 +12,7 @@ namespace tsoa.totems
     public class TSOAT_DefOf
     {
         public static HediffDef TSOA_CairnHediff;
+
+        public static HediffDef TSOA_BloodthirstHediff;
     }
 }

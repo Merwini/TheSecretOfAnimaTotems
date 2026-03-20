@@ -130,6 +130,19 @@
 			<li>TSOA_TotemThree</li>
 		</researchPrerequisites>
 	</ThingDef>
+	
+	<ThingDef ParentName="TSOA_AnimusTotemBase">
+		<defName>TSOA_TotemBloodthirst</defName>
+		<label>animus totem of bloodthirst</label>
+		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to collect the psychic energy released when a life is taken, a direct it into the colonist that took the life. Gives a short-lived combat bonus. Every kill resets the timer and grows the bonus, to a maximum of 10 stacks.</description>
+		<thingClass>tsoa.totems.Building_TotemBloodthirst</thingClass>
+		<graphicData>
+			<texPath>Things/Building/Totem/AnimusTotemShark</texPath>
+		</graphicData>
+		<researchPrerequisites>
+			<li>TSOA_TotemTwo</li>
+		</researchPrerequisites>
+	</ThingDef>
 
 	<!--<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemTestOne</defName>
@@ -141,15 +154,7 @@
 		</graphicData>
 	</ThingDef>
 
-	<ThingDef ParentName="TSOA_AnimusTotemBase">
-		<defName>TSOA_TotemTestTwo</defName>
-		<label>animus totem of test2</label>
-		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
-		<thingClass>tsoa.totems.Building_TotemPremonition</thingClass>
-		<graphicData>
-			<texPath>Things/Building/Totem/AnimusTotemShark</texPath>
-		</graphicData>
-	</ThingDef>
+	
 
 	<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemTestThree</defName>

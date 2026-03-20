@@ -245,8 +245,7 @@
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
 				<statOffsets>
-					<ShootingAccuracyPawn>5</ShootingAccuracyPawn>
-					<AimingDelayFactor>-0.25</AimingDelayFactor>
+					<RangedCooldownFactor>0.8</RangedCooldownFactor>
 				</statOffsets>
 			</li>
 		</modExtensions>

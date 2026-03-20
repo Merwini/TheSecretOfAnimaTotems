@@ -13,4 +13,8 @@
 			<displayName>The Secret of Anima - Core</displayName>
 		</li>
 	</modDependencies>
+	<loadAfter>
+		<li>tsoa.core</li>
+		<li>tsoa.rituals</li>
+	</loadAfter>
 </ModMetaData>

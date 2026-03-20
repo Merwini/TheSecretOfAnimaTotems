@@ -15,5 +15,20 @@
 			</li>
 		</comps>
 	</HediffDef>
+
+	<HediffDef>
+		<defName>TSOA_BloodthirstHediff</defName>
+		<hediffClass>tsoa.totems.Hediff_Bloodthirst</hediffClass>
+		<label>animus bloodthirst</label>
+		<description>This person is being empowered by the psychic energy released from taking another another's life. Lasts for one minute, but resets with every fresh kill. Reaches maximum potency at 10 kills.</description>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>3600</disappearsAfterTicks>
+				<showRemainingTime>true</showRemainingTime>
+				<canUseDecimalsShortForm>true</canUseDecimalsShortForm>
+			</li>
+		</comps>
+	</HediffDef>
 	
 </Defs>
