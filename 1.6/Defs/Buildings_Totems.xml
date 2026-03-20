@@ -137,7 +137,7 @@
 		<description>A totem of carved jade stones. When connected to an anima tree and fueled with anima grass, taps into the anima network to collect the psychic energy released when a life is taken, a direct it into the colonist that took the life. Gives a short-lived combat bonus. Every kill resets the timer and grows the bonus, to a maximum of 10 stacks.</description>
 		<thingClass>tsoa.totems.Building_TotemBloodthirst</thingClass>
 		<graphicData>
-			<texPath>Things/Building/Totem/AnimusTotemShark</texPath>
+			<texPath>TSOA/Things/Building/Totem/AnimusTotemShark</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_TotemTwo</li>
