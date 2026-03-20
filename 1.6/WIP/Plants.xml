@@ -5,7 +5,7 @@
 		<label>anima sapling</label>
 		<description>An immature anima tree. Anima saplings have the same psyfocus restorative properties as an anima tree, but are not mature enough to grow anima grass or produce other usable resources. However, their immaturity makes their energy flow maleable, and animus cairns placed near the sapling can siphon off energy to empower those who meditate around it.</description>
 		<graphicData>
-			<texPath>Things/Plant/TreeAnima</texPath>
+			<texPath>TSOA/Things/Plant/TreeAnima</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
 			<shadowData>
 				<volume>(0.2, 0.35, 0.13)</volume>
