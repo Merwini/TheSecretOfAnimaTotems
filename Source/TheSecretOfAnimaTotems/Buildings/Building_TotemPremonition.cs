@@ -18,7 +18,7 @@ public class Building_TotemPremonition : Building_AnimusTotem
     {
         if (!compRefuelable.HasFuel)
         {
-            gameComp.activePremonition.Remove(this.Map);
+            EndTotemEffect();
         }
 
         base.Tick();
@@ -29,16 +29,9 @@ public class Building_TotemPremonition : Building_AnimusTotem
         gameComp.activePremonition[this.Map] = this;
     }
 
-    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    public override void EndTotemEffect()
     {
         gameComp.activePremonition.Remove(this.Map);
-        base.Destroy(mode);
-    }
-
-    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-    {
-        gameComp.activePremonition.Remove(this.Map);
-        base.DeSpawn(mode);
     }
 }
 

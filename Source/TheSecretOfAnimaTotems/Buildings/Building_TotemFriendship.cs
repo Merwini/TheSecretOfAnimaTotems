@@ -51,6 +51,11 @@ public class Building_TotemFriendship : Building_AnimusTotem
         base.DoTotemEffect();
     }
 
+    public override void EndTotemEffect()
+    {
+        return;
+    }
+
     public override void ExposeData()
     {
         Scribe_Values.Look(ref ticksToNextGoodwill, "ticksToNextGoodwill", goodwillTicks);

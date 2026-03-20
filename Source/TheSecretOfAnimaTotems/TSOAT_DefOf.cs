@@ -14,5 +14,7 @@ namespace tsoa.totems
         public static HediffDef TSOA_CairnHediff;
 
         public static HediffDef TSOA_BloodthirstHediff;
+
+        public static HediffDef TSOA_NineLivesHediff;
     }
 }

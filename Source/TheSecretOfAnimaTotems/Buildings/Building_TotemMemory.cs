@@ -17,7 +17,7 @@ public class Building_TotemMemory : Building_AnimusTotem
     {
         if (!compRefuelable.HasFuel)
         {
-            gameComp.activeMemory.Remove(this);
+            EndTotemEffect();
         }
 
         base.Tick();
@@ -28,16 +28,9 @@ public class Building_TotemMemory : Building_AnimusTotem
         gameComp.activeMemory.Add(this);
     }
 
-    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    public override void EndTotemEffect()
     {
         gameComp.activeMemory.Remove(this);
-        base.Destroy(mode);
-    }
-
-    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-    {
-        gameComp.activeMemory.Remove(this);
-        base.DeSpawn(mode);
     }
 
     [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]

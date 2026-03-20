@@ -15,7 +15,7 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
     {
         if (!compRefuelable.HasFuel)
         {
-            gameComp.activeBloodthirst.Remove(this);
+            EndTotemEffect();
         }
 
         base.Tick();
@@ -26,15 +26,20 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
         gameComp.activeBloodthirst.Add(this);
     }
 
+    public override void EndTotemEffect()
+    {
+        gameComp.activeBloodthirst.Remove(this);
+    }
+
     [HarmonyPatch(typeof(RecordsUtility), nameof(RecordsUtility.Notify_PawnKilled))]
     public static class RecordsUtility_Notify_PawnKilled_Postfix
     {
         public static void Postfix(Pawn killed, Pawn killer)
         {
-            if (!killer.IsColonistPlayerControlled)
+            if (GameComponent_TotemTracker.Instance.activeBloodthirst.Count == 0)
                 return;
 
-            if (GameComponent_TotemTracker.Instance.activeBloodthirst.Count == 0)
+            if (!killer.IsColonist)
                 return;
 
             Hediff_Bloodthirst hediff = killer.health?.hediffSet?.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_BloodthirstHediff) as Hediff_Bloodthirst;

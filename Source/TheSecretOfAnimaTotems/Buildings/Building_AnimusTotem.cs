@@ -73,7 +73,26 @@ public abstract class Building_AnimusTotem : Building
     {
     }
 
-    public virtual void EndTotemEffect()
+    public abstract void EndTotemEffect();
+
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
+        EndTotemEffect();
+
+        base.Destroy(mode);
+    }
+    
+    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+    {
+        EndTotemEffect();
+
+        base.DeSpawn(mode);
+    }
+
+    public override void Notify_MinifiedThingAboutToBeDestroyed(DestroyMode mode)
+    {
+        EndTotemEffect();
+
+        base.Notify_MinifiedThingAboutToBeDestroyed(mode);
     }
 }

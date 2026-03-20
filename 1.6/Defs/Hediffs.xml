@@ -31,4 +31,12 @@
 		</comps>
 	</HediffDef>
 	
+	<HediffDef>
+		<defName>TSOA_NineLivesHediff</defName>
+		<hediffClass>tsoa.totems.Hediff_NineLives</hediffClass>
+		<label>nine lives</label>
+		<description>This person is being</description>
+		<isBad>false</isBad>
+	</HediffDef>
+
 </Defs>

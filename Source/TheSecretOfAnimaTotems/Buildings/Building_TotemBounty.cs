@@ -17,7 +17,7 @@ public class Building_TotemBounty : Building_AnimusTotem
     {
         if (!compRefuelable.HasFuel)
         {
-            gameComp.activeBounty.Remove(this.Map);
+            EndTotemEffect();
         }
 
         base.Tick();
@@ -26,6 +26,11 @@ public class Building_TotemBounty : Building_AnimusTotem
     public override void DoTotemEffect()
     {
         gameComp.activeBounty[this.Map] = this;
+    }
+
+    public override void EndTotemEffect()
+    {
+        gameComp.activeBounty.Remove(this.Map);
     }
 
     [HarmonyPatch(typeof(Plant), nameof(Plant.GrowthRate), MethodType.Getter)]

@@ -15,7 +15,7 @@ public class Building_TotemTemper : Building_AnimusTotem
     { 
         if (!compRefuelable.HasFuel)
         {
-            gameComp.activeTemper.Remove(this);
+            EndTotemEffect();
         }
 
         base.Tick();
@@ -24,6 +24,11 @@ public class Building_TotemTemper : Building_AnimusTotem
     public override void DoTotemEffect()
     {
         gameComp.activeTemper.Add(this);
+    }
+
+    public override void EndTotemEffect()
+    {
+        gameComp.activeTemper.Remove(this);
     }
 
     [HarmonyPatch(typeof(Thought), nameof(Thought.DurationTicks), MethodType.Getter)]

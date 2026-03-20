@@ -18,6 +18,7 @@ public class GameComponent_TotemTracker : GameComponent
     public Dictionary<Map, Building_TotemBounty> activeBounty;
     public Dictionary<Map, Building_TotemPremonition> activePremonition;
     public HashSet<Building_TotemBloodthirst> activeBloodthirst;
+    public HashSet<Building_TotemFortune> activeFortune;
 
     public List<Premonition> premonitions;
 
@@ -74,11 +75,14 @@ public class GameComponent_TotemTracker : GameComponent
         activeBounty ??= new Dictionary<Map, Building_TotemBounty>();
         activePremonition ??= new Dictionary<Map, Building_TotemPremonition>();
         activeBloodthirst ??= new HashSet<Building_TotemBloodthirst>();
+        activeFortune ??= new HashSet<Building_TotemFortune>();
 
         premonitions ??= new List<Premonition>();
 
         activeMemory.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
         activeTemper.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
+        activeBloodthirst.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
+        activeFortune.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
 
         if (activeBounty.Count > 0)
         {
@@ -134,6 +138,7 @@ public class GameComponent_TotemTracker : GameComponent
         Scribe_Collections.Look(ref activeBounty, "activeBounty", LookMode.Reference, LookMode.Reference);
         Scribe_Collections.Look(ref activePremonition, "activePremonition", LookMode.Reference, LookMode.Reference);
         Scribe_Collections.Look(ref activeBloodthirst, "activeBloodthirst", LookMode.Reference);
+        Scribe_Collections.Look(ref activeFortune, "activeFortune", LookMode.Reference);
 
         Scribe_Collections.Look(ref premonitions, "premonitions", LookMode.Deep);
 
