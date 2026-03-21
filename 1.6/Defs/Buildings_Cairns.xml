@@ -156,7 +156,7 @@
 		<label>animus cairn of discovery</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the researching capabilities of the meditator.</description>
 		<graphicData>
-			<texPath>TSOA/Things/Building/Cairn/AnimusCairnResearching</texPath>
+			<texPath>TSOA/Things/Building/Cairn/AnimusCairnResearch</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_CairnTwo</li>
