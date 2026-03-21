@@ -35,7 +35,7 @@
 		<defName>TSOA_NineLivesHediff</defName>
 		<hediffClass>tsoa.totems.Hediff_NineLives</hediffClass>
 		<label>nine lives</label>
-		<description>This person is being</description>
+		<description>This person is has had their fortune changed, to help them avoid an otherwise fatal attack. Such manipulations have their limits.</description>
 		<isBad>false</isBad>
 	</HediffDef>
 
