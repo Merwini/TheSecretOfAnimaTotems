@@ -28,6 +28,8 @@ public class Hediff_CairnEffect : HediffWithComps
         }
     }
 
+    public bool HasStats => !statOffsets.NullOrEmpty() || !statFactors.NullOrEmpty();
+
     public void StoreStatModifiers(List<StatModifier> statOffsets, List<StatModifier> statFactors)
     {
         this.statOffsets = statOffsets;

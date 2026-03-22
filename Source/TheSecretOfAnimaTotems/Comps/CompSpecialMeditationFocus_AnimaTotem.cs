@@ -97,6 +97,9 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
         Hediff_CairnEffect hediff = (Hediff_CairnEffect)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_CairnHediff, pawn);
         BuildHediffStage(hediff);
 
+        if (!hediff.HasStats)
+            return;
+
         Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_CairnHediff);
         if (existing != null)
         {
