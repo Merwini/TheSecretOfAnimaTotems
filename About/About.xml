@@ -20,6 +20,5 @@
 	</modDependencies>
 	<loadAfter>
 		<li>tsoa.core</li>
-		<li>tsoa.rituals</li>
 	</loadAfter>
 </ModMetaData>
