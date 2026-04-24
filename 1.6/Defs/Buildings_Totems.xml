@@ -23,7 +23,7 @@
 		<stuffCategories>
 			<li>Stony</li>
 		</stuffCategories>
-		<costStuffCount>75</costStuffCount>
+		<costStuffCount>200</costStuffCount>
 		<costList>
 			<Jade>25</Jade>
 			<TSOA_AnimaSap>3</TSOA_AnimaSap>
@@ -51,11 +51,12 @@
 				<canPlaceWithoutLink>false</canPlaceWithoutLink>
 			</li>
 			<li Class="CompProperties_Refuelable">
-				<fuelConsumptionRate>2.0</fuelConsumptionRate>
-				<fuelCapacity>20.0</fuelCapacity>
+				<fuelConsumptionRate>0.06667</fuelConsumptionRate>
+				<fuelCapacity>1.0</fuelCapacity>
+				<fuelMultiplier>1</fuelMultiplier>
 				<fuelFilter>
 					<thingDefs>
-						<li>TSOA_AnimaGrassResource</li>
+						<li>TSOA_AnimaSap</li>
 					</thingDefs>
 				</fuelFilter>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
@@ -75,7 +76,7 @@
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCapybara</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_TotemOne</li>
+			<li>TSOA_AnimaTwo</li>
 		</researchPrerequisites>
 	</ThingDef>
 
@@ -88,7 +89,7 @@
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemElephant</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_TotemThree</li>
+			<li>TSOA_AnimaTwo</li>
 		</researchPrerequisites>
 	</ThingDef>
 
@@ -127,7 +128,7 @@
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemEagle</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_TotemThree</li>
+			<li>TSOA_TotemTwo</li>
 		</researchPrerequisites>
 	</ThingDef>
 	
@@ -140,7 +141,7 @@
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemShark</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_TotemTwo</li>
+			<li>TSOA_TotemOne</li>
 		</researchPrerequisites>
 	</ThingDef>
 
@@ -153,7 +154,7 @@
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCat</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_TotemThree</li>
+			<li>TSOA_TotemTwo</li>
 		</researchPrerequisites>
 	</ThingDef>
 

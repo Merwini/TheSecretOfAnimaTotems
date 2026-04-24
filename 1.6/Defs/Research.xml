@@ -3,7 +3,7 @@
 
 	<ResearchProjectDef>
 		<defName>TSOA_CairnOne</defName>
-		<label>basic animus cairns</label>
+		<label>advanced animus cairns</label>
 		<description>Learn how to craft basic animus cairns from stone, jade, and anima grass. Animus cairns connect to anima trees, and empower those who meditate at that tree.</description>
 		<baseCost>1200</baseCost>
 		<techLevel>Neolithic</techLevel>
@@ -17,7 +17,7 @@
 
 	<ResearchProjectDef>
 		<defName>TSOA_CairnTwo</defName>
-		<label>acolyte animus cairns</label>
+		<label>master animus cairns</label>
 		<description>Learn how to craft advanced animus cairns from stone, jade, and anima grass. Animus cairns connect to anima trees, and empower those who meditate at that tree.</description>
 		<baseCost>1800</baseCost>
 		<techLevel>Medieval</techLevel>
@@ -31,62 +31,32 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
-		<defName>TSOA_CairnThree</defName>
-		<label>shaman animus cairns</label>
-		<description>Learn how to craft masterful animus cairns from stone, jade, and anima grass. Animus cairns connect to anima trees, and empower those who meditate at that tree.</description>
-		<baseCost>2400</baseCost>
-		<techLevel>Medieval</techLevel>
-		<tab>TSOA_ResearchTab</tab>
-		<researchViewX>5.00</researchViewX>
-		<researchViewY>4.90</researchViewY>
-		<prerequisites>
-			<li>TSOA_AnimaThree</li>
-			<li>TSOA_CairnTwo</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
 		<defName>TSOA_TotemOne</defName>
-		<label>basic animus totems</label>
+		<label>advanced animus totems</label>
 		<description>Learn how to craft basic animus totems from stone, jade, and anima sap. Animus totems link to anima trees, and provide powerful map- or even world-wide benefits. They must be fueled with anima grass in order to function.</description>
 		<baseCost>1200</baseCost>
 		<techLevel>Neolithic</techLevel>
-		<tab>TSOA_ResearchTab</tab>
-		<researchViewX>1.00</researchViewX>
-		<researchViewY>5.60</researchViewY>
-		<prerequisites>
-			<li>TSOA_AnimaOne</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>TSOA_TotemTwo</defName>
-		<label>acolyte animus totems</label>
-		<description>Learn how to craft advanced animus totems from stone, jade, and anima sap. Animus totems link to anima trees, and provide powerful map- or even world-wide benefits. They must be fueled with anima grass in order to function.</description>
-		<baseCost>1800</baseCost>
-		<techLevel>Medieval</techLevel>
 		<tab>TSOA_ResearchTab</tab>
 		<researchViewX>3.00</researchViewX>
 		<researchViewY>5.60</researchViewY>
 		<prerequisites>
 			<li>TSOA_AnimaTwo</li>
-			<li>TSOA_TotemOne</li>
 		</prerequisites>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
-		<defName>TSOA_TotemThree</defName>
-		<label>shaman animus totems</label>
-		<description>Learn how to craft masterful animus totems from stone, jade, and anima sap. Animus totems link to anima trees, and provide powerful map- or even world-wide benefits. They must be fueled with anima grass in order to function.</description>
-		<baseCost>2400</baseCost>
+		<defName>TSOA_TotemTwo</defName>
+		<label>master animus totems</label>
+		<description>Learn how to craft advanced animus totems from stone, jade, and anima sap. Animus totems link to anima trees, and provide powerful map- or even world-wide benefits. They must be fueled with anima grass in order to function.</description>
+		<baseCost>1800</baseCost>
 		<techLevel>Medieval</techLevel>
 		<tab>TSOA_ResearchTab</tab>
 		<researchViewX>5.00</researchViewX>
 		<researchViewY>5.60</researchViewY>
 		<prerequisites>
 			<li>TSOA_AnimaThree</li>
-			<li>TSOA_TotemTwo</li>
+			<li>TSOA_TotemOne</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 </Defs>
