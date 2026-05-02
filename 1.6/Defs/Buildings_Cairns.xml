@@ -41,7 +41,7 @@
 		<comps>
 			<li Class="tsoa.core.CompProperties_GroupedFacility">
 				<categoryTag>TSOA_AnimusCairnCategory</categoryTag>
-				<maxDistance>4</maxDistance>
+				<maxDistance>5</maxDistance>
 				<canPlaceWithoutLink>false</canPlaceWithoutLink>
 			</li>
 		</comps>
