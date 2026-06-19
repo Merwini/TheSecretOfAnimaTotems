@@ -37,6 +37,9 @@ public class Building_TotemFortune : Building_AnimusTotem
     {
         public static bool Prefix(Pawn pawn, Hediff_Injury injury, DamageInfo dinfo, DamageWorker.DamageResult result)
         {
+            if (GameComponent_TotemTracker.Instance == null || GameComponent_TotemTracker.Instance.activeFortune == null)
+                return true;
+
             if (GameComponent_TotemTracker.Instance.activeFortune.Count == 0)
                 return true;
 
