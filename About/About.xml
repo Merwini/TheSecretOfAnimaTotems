@@ -6,7 +6,9 @@
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
-	<description>Cairns and Totems</description>
+	<description>A mod in The Secret of Anima, a series of mods focused on providing an alternate progression path for your colony. Instead of technology, embrace the power of the Anima tree.
+- Anima Cairns are buildings that link to Anima trees and provide benefits to colonists who meditate at the linked tree.
+- Anima Totems are buildings that link to Anima trees and provide map- or world-wide effects.</description>
 	<modDependencies>
 		<li>
 			<packageId>tsoa.core</packageId>
