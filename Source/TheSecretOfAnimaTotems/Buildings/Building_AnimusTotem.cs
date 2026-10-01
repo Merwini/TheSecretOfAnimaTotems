@@ -12,10 +12,10 @@ namespace tsoa.totems;
 public abstract class Building_AnimusTotem : Building
 {
     internal GameComponent_TotemTracker gameComp;
-    internal CompGroupedFacility compGroupedFacility;
+    internal CompFacility_Grouped compFacility_Grouped;
     internal CompRefuelable compRefuelable;
 
-    private bool Linked => compGroupedFacility.LinkedThings.Any();
+    private bool Linked => compFacility_Grouped.LinkedBuildings.Any();
 
     private Thing linkedTree;
 
@@ -48,7 +48,7 @@ public abstract class Building_AnimusTotem : Building
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        compGroupedFacility = GetComp<CompGroupedFacility>();
+        compFacility_Grouped = GetComp<CompFacility_Grouped>();
         compRefuelable = GetComp<CompRefuelable>();
         gameComp = Current.Game.GetComponent<GameComponent_TotemTracker>();
 

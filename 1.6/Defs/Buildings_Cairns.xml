@@ -39,7 +39,7 @@
 		<canOverlapZones>true</canOverlapZones>
 		<tickerType>Rare</tickerType>
 		<comps>
-			<li Class="tsoa.core.CompProperties_GroupedFacility">
+			<li Class="tsoa.core.CompProperties_Facility_Grouped">
 				<categoryTag>TSOA_AnimusCairnCategory</categoryTag>
 				<maxDistance>5</maxDistance>
 				<canPlaceWithoutLink>false</canPlaceWithoutLink>

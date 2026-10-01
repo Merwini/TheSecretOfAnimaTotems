@@ -6,7 +6,7 @@
 			<li>The Secret of Anima - Rituals</li>
 		</mods>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[@Name="TSOA_AnimusCairnBase"]/comps/li[@Class="tsoa.core.CompProperties_GroupedFacility"]</xpath>
+			<xpath>Defs/ThingDef[@Name="TSOA_AnimusCairnBase"]/comps/li[@Class="tsoa.core.CompProperties_Facility_Grouped"]</xpath>
 			<value>
 				<statOffsets>
 					<PsychicRitualQuality>0.0833</PsychicRitualQuality>

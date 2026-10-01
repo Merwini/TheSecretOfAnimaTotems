@@ -45,7 +45,7 @@
 		<tickerType>Normal</tickerType>
 		<defaultPlacingRot>North</defaultPlacingRot>
 		<comps>
-			<li Class="tsoa.core.CompProperties_GroupedFacility">
+			<li Class="tsoa.core.CompProperties_Facility_Grouped">
 				<categoryTag>TSOA_AnimusTotemCategory</categoryTag>
 				<maxDistance>6</maxDistance>
 				<canPlaceWithoutLink>false</canPlaceWithoutLink>
