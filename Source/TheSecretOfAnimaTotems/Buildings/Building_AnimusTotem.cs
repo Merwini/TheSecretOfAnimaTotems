@@ -57,9 +57,13 @@ public abstract class Building_AnimusTotem : Building
 
     public override void Tick()
     {
-        if (compRefuelable.HasFuel)
+        if (Spawned && compRefuelable.HasFuel && Linked)
         {
             DoTotemEffect();
+        }
+        else
+        {
+            EndTotemEffect();
         }
 
         base.Tick();
@@ -73,7 +77,9 @@ public abstract class Building_AnimusTotem : Building
     {
     }
 
-    public abstract void EndTotemEffect();
+    public virtual void EndTotemEffect()
+    {
+    }
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {

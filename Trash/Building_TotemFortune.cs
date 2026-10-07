@@ -50,7 +50,7 @@ public class Building_TotemFortune : Building_AnimusTotem
             if (!wouldDie)
                 return true;
 
-            Hediff_NineLives hediff = pawn.health?.hediffSet?.GetFirstHediff< Hediff_NineLives >();
+            Hediff_NineLives hediff = pawn.health?.hediffSet?.GetFirstHediff<Hediff_NineLives>();
             if (hediff == null)
             {
                 hediff = (Hediff_NineLives)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_NineLivesHediff, pawn);

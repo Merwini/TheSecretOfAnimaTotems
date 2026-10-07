@@ -25,12 +25,26 @@ public class Building_TotemBounty : Building_AnimusTotem
 
     public override void DoTotemEffect()
     {
-        gameComp.activeBounty[this.Map] = this;
+        HashSet<Building_TotemBounty> buildings = gameComp.activeBounty.TryGetValue(this.Map);
+        if (buildings == null)
+        {
+            buildings = new HashSet<Building_TotemBounty>();
+            gameComp.activeBounty[this.Map] = buildings;
+        }
+        else
+        {
+            buildings.Add(this);
+        }
     }
 
     public override void EndTotemEffect()
     {
-        gameComp.activeBounty.Remove(this.Map);
+        HashSet<Building_TotemBounty> buildings = gameComp.activeBounty.TryGetValue(this.Map);
+        if (buildings != null)
+        {
+            buildings.Remove(this);
+        }
+        gameComp.CleanupBounty();
     }
 
     [HarmonyPatch(typeof(Plant), nameof(Plant.GrowthRate), MethodType.Getter)]

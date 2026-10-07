@@ -15,12 +15,13 @@ public class GameComponent_TotemTracker : GameComponent
     // TotemFriendship doesn't need global tracking
     public HashSet<Building_TotemMemory> activeMemory;
     public HashSet<Building_TotemTemper> activeTemper;
-    public Dictionary<Map, Building_TotemBounty> activeBounty;
-    public Dictionary<Map, Building_TotemPremonition> activePremonition;
+    public Dictionary<Map, HashSet<Building_TotemBounty>> activeBounty;
+    //public Dictionary<Map, Building_TotemPremonition> activePremonition;
     public HashSet<Building_TotemBloodthirst> activeBloodthirst;
-    public HashSet<Building_TotemFortune> activeFortune;
+    //public HashSet<Building_TotemFortune> activeFortune;
+    public Dictionary<Map, HashSet<Building_TotemReflex>> activeReflex;
 
-    public List<Premonition> premonitions;
+    //public List<Premonition> premonitions;
 
     public GameComponent_TotemTracker(Game game)
     {
@@ -28,34 +29,34 @@ public class GameComponent_TotemTracker : GameComponent
 
     public override void GameComponentTick()
     {
-        if (premonitions.Count > 0)
-        {
-            for (int i = premonitions.Count - 1; i >= 0; i--)
-            {
-                Premonition premonition = premonitions[i];
-                FiringIncident inc = premonition.Incident;
-                Map map = (Map)inc.parms.target;
+        // if (premonitions.Count > 0)
+        // {
+        //     for (int i = premonitions.Count - 1; i >= 0; i--)
+        //     {
+        //         Premonition premonition = premonitions[i];
+        //         FiringIncident inc = premonition.Incident;
+        //         Map map = (Map)inc.parms.target;
 
-                if (map == null && !map.Parent.Spawned)
-                {
-                    premonitions.RemoveAt(i);
-                }
+        //         if (map == null && !map.Parent.Spawned)
+        //         {
+        //             premonitions.RemoveAt(i);
+        //         }
 
-                if (Find.TickManager.TicksGame >= premonition.FireTick)
-                {
-                    inc.parms.questTag = "premonition"; // so it doesn't get re-delayed by the Prefix
-                    if (Find.Storyteller.TryFire(inc))
-                    {
-                        premonitions.RemoveAt(i);
-                    }
-                    else if (!premonition.Delay()) // has failed to fire 4 times, give up
-                    {
-                        premonitions.RemoveAt(i);
-                        Log.Error("Premonition has failed to come true");
-                    }
-                }
-            }
-        }
+        //         if (Find.TickManager.TicksGame >= premonition.FireTick)
+        //         {
+        //             inc.parms.questTag = "premonition"; // so it doesn't get re-delayed by the Prefix
+        //             if (Find.Storyteller.TryFire(inc))
+        //             {
+        //                 premonitions.RemoveAt(i);
+        //             }
+        //             else if (!premonition.Delay()) // has failed to fire 4 times, give up
+        //             {
+        //                 premonitions.RemoveAt(i);
+        //                 Log.Error("Premonition has failed to come true");
+        //             }
+        //         }
+        //     }
+        // }
 
         base.GameComponentTick();
     }
@@ -72,75 +73,132 @@ public class GameComponent_TotemTracker : GameComponent
     {
         activeMemory ??= new HashSet<Building_TotemMemory>();
         activeTemper ??= new HashSet<Building_TotemTemper>();
-        activeBounty ??= new Dictionary<Map, Building_TotemBounty>();
-        activePremonition ??= new Dictionary<Map, Building_TotemPremonition>();
+        activeBounty ??= new Dictionary<Map, HashSet<Building_TotemBounty>>();
+        //activePremonition ??= new Dictionary<Map, Building_TotemPremonition>();
         activeBloodthirst ??= new HashSet<Building_TotemBloodthirst>();
-        activeFortune ??= new HashSet<Building_TotemFortune>();
+        //activeFortune ??= new HashSet<Building_TotemFortune>();
+        activeReflex ??= new Dictionary<Map, HashSet<Building_TotemReflex>>();
 
-        premonitions ??= new List<Premonition>();
+        //premonitions ??= new List<Premonition>();
 
         activeMemory.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
         activeTemper.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
         activeBloodthirst.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
-        activeFortune.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
+        //activeFortune.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
 
+        // if (activePremonition.Count > 0)
+        // {
+        //     List<Map> keysToRemove = null;
+
+        //     foreach (var kvp in activePremonition)
+        //     {
+        //         Map map = kvp.Key;
+        //         Building_TotemPremonition building = kvp.Value;
+
+        //         if (map == null || building == null || building.Destroyed || !building.Spawned || building.Map != map)
+        //         {
+        //             keysToRemove ??= new List<Map>();
+        //             keysToRemove.Add(map);
+        //         }
+        //     }
+
+        //     if (keysToRemove != null)
+        //     {
+        //         for (int i = 0; i < keysToRemove.Count; i++)
+        //             activePremonition.Remove(keysToRemove[i]);
+        //     }
+        // }
+    }
+
+    public void CleanupBounty()
+    {
         if (activeBounty.Count > 0)
         {
-            List<Map> keysToRemove = null;
+            List<Map> mapsToRemove = new List<Map>();
 
             foreach (var kvp in activeBounty)
             {
                 Map map = kvp.Key;
-                Building_TotemBounty building = kvp.Value;
+                HashSet<Building_TotemBounty> buildings = kvp.Value;
 
-                if (map == null || building == null || building.Destroyed || !building.Spawned || building.Map != map)
+                if (map == null || buildings == null)
                 {
-                    keysToRemove ??= new List<Map>();
-                    keysToRemove.Add(map);
+                    mapsToRemove.Add(map);
+                }
+
+                HashSet<Building_TotemBounty> buildingsToRemove = new HashSet<Building_TotemBounty>();
+                foreach (Building_TotemBounty building in buildings)
+                {
+                    if (building == null || building.Destroyed || !building.Spawned || building.Map != map)
+                    {
+                        buildingsToRemove.Add(building);
+                    }
+                }
+                if (buildingsToRemove.Count > 0)
+                {
+                    foreach (Building_TotemBounty building in buildingsToRemove)
+                        buildings.Remove(building);
                 }
             }
-
-            if (keysToRemove != null)
+            if (mapsToRemove.Count > 0)
             {
-                for (int i = 0; i < keysToRemove.Count; i++)
-                    activeBounty.Remove(keysToRemove[i]);
-            }
-        }
-
-        if (activePremonition.Count > 0)
-        {
-            List<Map> keysToRemove = null;
-
-            foreach (var kvp in activePremonition)
-            {
-                Map map = kvp.Key;
-                Building_TotemPremonition building = kvp.Value;
-
-                if (map == null || building == null || building.Destroyed || !building.Spawned || building.Map != map)
-                {
-                    keysToRemove ??= new List<Map>();
-                    keysToRemove.Add(map);
-                }
-            }
-
-            if (keysToRemove != null)
-            {
-                for (int i = 0; i < keysToRemove.Count; i++)
-                    activePremonition.Remove(keysToRemove[i]);
+                for (int i = 0; i < mapsToRemove.Count; i++)
+                    activeBounty.Remove(mapsToRemove[i]);
             }
         }
     }
+
+    public void CleanupReflex()
+    {
+        if (activeReflex.Count > 0)
+        {
+            List<Map> keysToRemove = new List<Map>();
+
+            foreach (var kvp in activeReflex)
+            {
+                Map map = kvp.Key;
+                HashSet<Building_TotemReflex> buildings = kvp.Value;
+
+                if (map == null || buildings == null || buildings.Count == 0)
+                {
+                    keysToRemove.Add(map);
+                }
+
+                HashSet<Building_TotemReflex> buildingsToRemove = new HashSet<Building_TotemReflex>();
+                foreach (Building_TotemReflex building in buildings)
+                {
+                    if (building == null || building.Destroyed || !building.Spawned || building.Map != map)
+                    {
+                        buildingsToRemove.Add(building);
+                    }
+                }
+                if (buildingsToRemove.Count > 0)
+                {
+                    foreach (Building_TotemReflex building in buildingsToRemove)
+                        buildings.Remove(building);
+                }
+            }
+
+            if (keysToRemove.Count > 0)
+            {
+                for (int i = 0; i < keysToRemove.Count; i++)
+                    activeReflex.Remove(keysToRemove[i]);
+            }
+        }
+    }
+
 
     public override void ExposeData()
     {
         Scribe_Collections.Look(ref activeMemory, "activeMemory", LookMode.Reference);
         Scribe_Collections.Look(ref activeTemper, "activeTemper", LookMode.Reference);
         Scribe_Collections.Look(ref activeBounty, "activeBounty", LookMode.Reference, LookMode.Reference);
-        Scribe_Collections.Look(ref activePremonition, "activePremonition", LookMode.Reference, LookMode.Reference);
+        //Scribe_Collections.Look(ref activePremonition, "activePremonition", LookMode.Reference, LookMode.Reference);
         Scribe_Collections.Look(ref activeBloodthirst, "activeBloodthirst", LookMode.Reference);
-        Scribe_Collections.Look(ref activeFortune, "activeFortune", LookMode.Reference);
+        //Scribe_Collections.Look(ref activeFortune, "activeFortune", LookMode.Reference);
+        Scribe_Collections.Look(ref activeReflex, "activeReflex", LookMode.Reference);
 
-        Scribe_Collections.Look(ref premonitions, "premonitions", LookMode.Deep);
+        //Scribe_Collections.Look(ref premonitions, "premonitions", LookMode.Deep);
 
         base.ExposeData();
     }

@@ -42,6 +42,9 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
             if (!killer.IsColonist)
                 return;
 
+            if (killer.Dead || killer.Destroyed || !killer.Spawned)
+                return;
+
             Hediff_Bloodthirst hediff = killer.health?.hediffSet?.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_BloodthirstHediff) as Hediff_Bloodthirst;
             if (hediff == null)
             {

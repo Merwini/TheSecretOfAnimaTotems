@@ -119,7 +119,8 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<ThingDef ParentName="TSOA_AnimusTotemBase">
+	<!-- Decided this was redundant with Reflex, liked it better -->
+	<!-- <ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemPremonition</defName>
 		<label>animus totem of premonition</label>
 		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to detect hostile intentions toward your colony. When the fulfillment of these intentions becomes immenent, gives your colony a warning.\n\nProvides a 3-6 hour warning before a raid occurs on the same map as the totem.</description>
@@ -130,7 +131,7 @@
 		<researchPrerequisites>
 			<li>TSOA_TotemTwo</li>
 		</researchPrerequisites>
-	</ThingDef>
+	</ThingDef> -->
 	
 	<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemBloodthirst</defName>
@@ -145,11 +146,26 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<ThingDef ParentName="TSOA_AnimusTotemBase">
+	<!-- Hated this -->
+	<!-- <ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemFortune</defName>
 		<label>animus totem of fortune</label>
 		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima grass, taps into the anima radix to strengthen the bond between your colonists' psychic selves and physical bodies, making them harder to kill.\n\nBlocks fatal attacks up to nine times per colonist over the course of their life, while the totem is active. Does not prevent death from other means, such as disease or bleeding.</description>
 		<thingClass>tsoa.totems.Building_TotemFortune</thingClass>
+		<graphicData>
+			<texPath>TSOA/Things/Building/Totem/AnimusTotemCat</texPath>
+		</graphicData>
+		<researchPrerequisites>
+			<li>TSOA_TotemTwo</li>
+		</researchPrerequisites>
+	</ThingDef> -->
+
+	<ThingDef ParentName="TSOA_AnimusTotemBase">
+		<defName>TSOA_TotemReflex</defName>
+		<label>animus totem of reflex</label>
+		<!-- TODO rewrite -->
+		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, channels a psychic warning through the anima radix when danger strikes nearby.\n\nDoubles all colonists' movement speed on the same map for 60 seconds when certain hostile events occur.</description>
+		<thingClass>tsoa.totems.Building_TotemReflex</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCat</texPath>
 		</graphicData>
