@@ -17,8 +17,6 @@ public abstract class Building_AnimusTotem : Building
 
     private bool Linked => compFacility_Grouped.LinkedBuildings.Any();
 
-    private Thing linkedTree;
-
     // Decided to go with a CompRefuelable instead of taking directly from the tree
     //private CompSpawnSubplant compSP;
     //public CompSpawnSubplant CompSpawnSubplant
