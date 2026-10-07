@@ -25,10 +25,7 @@ public class Building_TotemReflex : Building_AnimusTotem
             buildings = new HashSet<Building_TotemReflex>();
             gameComp.activeReflex[this.Map] = buildings;
         }
-        else
-        {
-            buildings.Add(this);
-        }
+        buildings.Add(this);
 
         if (CheckIfShouldApply())
         {

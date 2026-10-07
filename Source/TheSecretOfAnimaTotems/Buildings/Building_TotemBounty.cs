@@ -21,10 +21,7 @@ public class Building_TotemBounty : Building_AnimusTotem
             buildings = new HashSet<Building_TotemBounty>();
             gameComp.activeBounty[this.Map] = buildings;
         }
-        else
-        {
-            buildings.Add(this);
-        }
+        buildings.Add(this);
     }
 
     public override void EndTotemEffect()
