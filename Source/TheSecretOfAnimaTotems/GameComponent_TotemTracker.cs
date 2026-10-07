@@ -67,6 +67,7 @@ public class GameComponent_TotemTracker : GameComponent
                 if (map == null || buildings == null)
                 {
                     mapsToRemove.Add(map);
+                    continue;
                 }
 
                 HashSet<Building_TotemBounty> buildingsToRemove = new HashSet<Building_TotemBounty>();
@@ -105,6 +106,7 @@ public class GameComponent_TotemTracker : GameComponent
                 if (map == null || buildings == null || buildings.Count == 0)
                 {
                     keysToRemove.Add(map);
+                    continue;
                 }
 
                 HashSet<Building_TotemReflex> buildingsToRemove = new HashSet<Building_TotemReflex>();
