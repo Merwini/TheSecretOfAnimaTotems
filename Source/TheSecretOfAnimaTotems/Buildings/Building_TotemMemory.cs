@@ -13,16 +13,6 @@ public class Building_TotemMemory : Building_AnimusTotem
 {
     internal const int lossDivisor = 2; // arbitrary, TODO balance
 
-    public override void Tick()
-    {
-        if (!compRefuelable.HasFuel)
-        {
-            EndTotemEffect();
-        }
-
-        base.Tick();
-    }
-
     public override void DoTotemEffect()
     {
         gameComp.activeMemory.Add(this);

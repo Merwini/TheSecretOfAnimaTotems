@@ -13,16 +13,6 @@ public class Building_TotemBounty : Building_AnimusTotem
 {
     internal const float growthRate = 1.5f;
 
-    public override void Tick()
-    {
-        if (!compRefuelable.HasFuel)
-        {
-            EndTotemEffect();
-        }
-
-        base.Tick();
-    }
-
     public override void DoTotemEffect()
     {
         HashSet<Building_TotemBounty> buildings = gameComp.activeBounty.TryGetValue(this.Map);

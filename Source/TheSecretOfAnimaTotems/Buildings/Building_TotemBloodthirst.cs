@@ -11,16 +11,6 @@ namespace tsoa.totems;
 
 public class Building_TotemBloodthirst : Building_AnimusTotem
 {
-    public override void Tick()
-    {
-        if (!compRefuelable.HasFuel)
-        {
-            EndTotemEffect();
-        }
-
-        base.Tick();
-    }
-
     public override void DoTotemEffect()
     {
         gameComp.activeBloodthirst.Add(this);

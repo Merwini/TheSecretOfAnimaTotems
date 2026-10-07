@@ -17,11 +17,6 @@ public class Building_TotemReflex : Building_AnimusTotem
 {
     private bool isApplied = false;
 
-    public override void Tick()
-    { 
-        base.Tick();
-    }
-
     public override void DoTotemEffect()
     {
         HashSet<Building_TotemReflex> buildings = gameComp.activeReflex.TryGetValue(this.Map);
