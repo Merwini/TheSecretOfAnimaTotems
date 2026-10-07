@@ -19,14 +19,6 @@ public class Building_TotemReflex : Building_AnimusTotem
 
     public override void DoTotemEffect()
     {
-        HashSet<Building_TotemReflex> buildings = gameComp.activeReflex.TryGetValue(this.Map);
-        if (buildings == null)
-        {
-            buildings = new HashSet<Building_TotemReflex>();
-            gameComp.activeReflex[this.Map] = buildings;
-        }
-        buildings.Add(this);
-
         if (CheckIfShouldApply())
         {
             if (!isApplied)
@@ -39,16 +31,6 @@ public class Building_TotemReflex : Building_AnimusTotem
             // hediff might actually still be applied, but hostiles are gone so I don't mind it refreshing if new hostiles appear
             isApplied = false;
         }
-    }
-
-    public override void EndTotemEffect()
-    {
-        HashSet<Building_TotemReflex> buildings = gameComp.activeReflex.TryGetValue(this.Map);
-        if (buildings != null)
-        {
-            buildings.Remove(this);
-        }
-        gameComp.CleanupReflex();
     }
 
     private bool CheckIfShouldApply()

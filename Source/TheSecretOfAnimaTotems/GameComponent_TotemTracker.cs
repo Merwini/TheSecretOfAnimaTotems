@@ -15,6 +15,8 @@ public class GameComponent_TotemTracker : GameComponent
     // TotemFriendship doesn't need global tracking
     public HashSet<Building_TotemMemory> activeMemory;
     public HashSet<Building_TotemTemper> activeTemper;
+    // Rebuilt by spawned totems; this registry does not need save serialization.
+    public HashSet<Building_TotemVersatility> activeVersatility = new HashSet<Building_TotemVersatility>();
     public Dictionary<Map, HashSet<Building_TotemBounty>> activeBounty;
     //public Dictionary<Map, Building_TotemPremonition> activePremonition;
     public HashSet<Building_TotemBloodthirst> activeBloodthirst;
@@ -46,11 +48,13 @@ public class GameComponent_TotemTracker : GameComponent
         activeTemper ??= new HashSet<Building_TotemTemper>();
         activeBounty ??= new Dictionary<Map, HashSet<Building_TotemBounty>>();
         activeBloodthirst ??= new HashSet<Building_TotemBloodthirst>();
-        activeReflex ??= new Dictionary<Map, HashSet<Building_TotemReflex>>();
 
         activeMemory.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
         activeTemper.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
+        activeVersatility.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
         activeBloodthirst.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
+
+        CleanupBounty();
     }
 
     public void CleanupBounty()
@@ -92,54 +96,14 @@ public class GameComponent_TotemTracker : GameComponent
         }
     }
 
-    public void CleanupReflex()
-    {
-        if (activeReflex.Count > 0)
-        {
-            List<Map> keysToRemove = new List<Map>();
-
-            foreach (var kvp in activeReflex)
-            {
-                Map map = kvp.Key;
-                HashSet<Building_TotemReflex> buildings = kvp.Value;
-
-                if (map == null || buildings == null || buildings.Count == 0)
-                {
-                    keysToRemove.Add(map);
-                    continue;
-                }
-
-                HashSet<Building_TotemReflex> buildingsToRemove = new HashSet<Building_TotemReflex>();
-                foreach (Building_TotemReflex building in buildings)
-                {
-                    if (building == null || building.Destroyed || !building.Spawned || building.Map != map)
-                    {
-                        buildingsToRemove.Add(building);
-                    }
-                }
-                if (buildingsToRemove.Count > 0)
-                {
-                    foreach (Building_TotemReflex building in buildingsToRemove)
-                        buildings.Remove(building);
-                }
-            }
-
-            if (keysToRemove.Count > 0)
-            {
-                for (int i = 0; i < keysToRemove.Count; i++)
-                    activeReflex.Remove(keysToRemove[i]);
-            }
-        }
-    }
-
-
     public override void ExposeData()
     {
         Scribe_Collections.Look(ref activeMemory, "activeMemory", LookMode.Reference);
         Scribe_Collections.Look(ref activeTemper, "activeTemper", LookMode.Reference);
+
+        // TODO fix serialization
         Scribe_Collections.Look(ref activeBounty, "activeBounty", LookMode.Reference, LookMode.Reference);
         Scribe_Collections.Look(ref activeBloodthirst, "activeBloodthirst", LookMode.Reference);
-        Scribe_Collections.Look(ref activeReflex, "activeReflex", LookMode.Reference);
 
         base.ExposeData();
     }

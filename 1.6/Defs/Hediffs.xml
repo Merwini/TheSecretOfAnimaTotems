@@ -2,29 +2,6 @@
 <Defs>
 
 	<HediffDef>
-		<defName>TSOA_ReflexHediff</defName>
-		<hediffClass>tsoa.totems.Hediff_Reflex</hediffClass>
-		<label>animus reflex</label>
-		<!-- TODO rewrite -->
-		<description>The anima radix sharpens this colonist's reflexes in response to danger, doubling movement speed for 60 seconds.</description>
-		<isBad>false</isBad>
-		<stages>
-			<li>
-				<statFactors>
-					<MoveSpeed>2</MoveSpeed>
-				</statFactors>
-			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<disappearsAfterTicks>3600</disappearsAfterTicks>
-				<showRemainingTime>true</showRemainingTime>
-				<canUseDecimalsShortForm>true</canUseDecimalsShortForm>
-			</li>
-		</comps>
-	</HediffDef>
-
-	<HediffDef>
 		<defName>TSOA_CairnHediff</defName>
 		<hediffClass>tsoa.totems.Hediff_CairnEffect</hediffClass>
 		<label>animus cairn resonance</label>
@@ -53,13 +30,36 @@
 			</li>
 		</comps>
 	</HediffDef>
-	
+
 	<HediffDef>
+		<defName>TSOA_ReflexHediff</defName>
+		<hediffClass>tsoa.totems.Hediff_Reflex</hediffClass>
+		<label>animus reflex</label>
+		<!-- TODO rewrite -->
+		<description>The anima radix sharpens this colonist's reflexes in response to danger, doubling movement speed for 60 seconds.</description>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<statFactors>
+					<MoveSpeed>2</MoveSpeed>
+				</statFactors>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>3600</disappearsAfterTicks>
+				<showRemainingTime>true</showRemainingTime>
+				<canUseDecimalsShortForm>true</canUseDecimalsShortForm>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<!-- <HediffDef>
 		<defName>TSOA_NineLivesHediff</defName>
 		<hediffClass>tsoa.totems.Hediff_NineLives</hediffClass>
 		<label>nine lives</label>
 		<description>This person is has had their fortune changed, to help them avoid an otherwise fatal attack. Such manipulations have their limits.</description>
 		<isBad>false</isBad>
-	</HediffDef>
+	</HediffDef> -->
 
 </Defs>
