@@ -104,7 +104,8 @@ public abstract class Building_AnimusTotem : Building
 
         base.DeSpawn(mode);
     }
-
+    
+    // This might actually be redundant, should have DeSpawn called when Minified anyway
     public override void Notify_MinifiedThingAboutToBeDestroyed(DestroyMode mode)
     {
         EndTotemEffect();
