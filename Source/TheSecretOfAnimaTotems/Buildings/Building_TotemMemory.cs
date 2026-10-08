@@ -11,8 +11,6 @@ namespace tsoa.totems;
 
 public class Building_TotemMemory : Building_AnimusTotem
 {
-    internal const int lossDivisor = 2; // arbitrary, TODO balance
-
     public override void DoTotemEffect()
     {
         RegisterTotem();
@@ -29,14 +27,30 @@ public class Building_TotemMemory : Building_AnimusTotem
         gameComp.activeMemory.Remove(this);
     }
 
-    [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]
-    public static class SkillRecord_Learn_Prefix
+    [HarmonyPatch(typeof(Thought), nameof(Thought.DurationTicks), MethodType.Getter)]
+    public static class Thought_DurationTicks_Postfix
     {
-        public static void Prefix(ref float xp)
+        public static void Postfix(Thought __instance, ref int __result)
         {
-            if (xp < 0 && GameComponent_TotemTracker.Instance?.activeMemory.Count != 0)
+            // Is this the most efficient order for the early returns?
+            if (!__instance.pawn.IsPlayerControlled)
+                return;
+
+            if (GameComponent_TotemTracker.Instance.activeMemory.Count == 0)
+                return;
+
+            ThoughtStage stage = __instance.CurStage;
+            if (stage == null)
+                return;
+
+            float mood = stage.baseMoodEffect;
+            if (mood < 0)
             {
-                xp /= lossDivisor;
+                __result = (int)(__result / 2); // TODO balance
+            }
+            else
+            {
+                __result = (int)(__result * 1.5f);
             }
         }
     }

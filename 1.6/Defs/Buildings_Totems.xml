@@ -83,7 +83,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemMemory</defName>
 		<label>animus totem of memory</label>
-		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly reminds your colonists of their past accomplishments, keeping their skills sharp.\n\nDecreases your colonists' natural skill loss by half.</description>
+		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences your colonists, reminding them of good memories and distracting them from bad ones.\n\nFor your colonists, shortens the duration of negative thought by 50%, increases the duration of positive ones by 50%.</description>
 		<thingClass>tsoa.totems.Building_TotemMemory</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemElephant</texPath>
@@ -93,7 +93,7 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<ThingDef ParentName="TSOA_AnimusTotemBase">
+	<!-- <ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemTemper</defName>
 		<label>animus totem of temper</label>
 		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences your colonists, reminding them of good memories and distracting them from bad ones.\n\nFor your colonists, shortens the duration of negative thought by 50%, increases the duration of positive ones by 50%.</description>
@@ -104,7 +104,7 @@
 		<researchPrerequisites>
 			<li>TSOA_TotemOne</li>
 		</researchPrerequisites>
-	</ThingDef>
+	</ThingDef> -->
 
 	<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemBounty</defName>

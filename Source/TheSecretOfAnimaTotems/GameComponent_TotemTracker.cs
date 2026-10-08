@@ -13,7 +13,6 @@ public class GameComponent_TotemTracker : GameComponent
     public static GameComponent_TotemTracker Instance;
 
     public HashSet<Building_TotemMemory> activeMemory;
-    public HashSet<Building_TotemTemper> activeTemper;
     public HashSet<Building_TotemBloodthirst> activeBloodthirst;
     public Dictionary<Map, HashSet<Building_TotemBounty>> activeBounty;
     public Dictionary<Map, HashSet<Building_TotemVersatility>> activeVersatility;
@@ -38,7 +37,6 @@ public class GameComponent_TotemTracker : GameComponent
     public void Cleanup()
     {
         activeMemory = new HashSet<Building_TotemMemory>();
-        activeTemper = new HashSet<Building_TotemTemper>();
         activeBloodthirst = new HashSet<Building_TotemBloodthirst>();
 
         activeBounty = new Dictionary<Map, HashSet<Building_TotemBounty>>();
