@@ -50,15 +50,10 @@ public class Building_TotemReflex : Building_AnimusTotem
     {
         bool shouldApply = false;
 
-        // TODO profiling how bad this is to call every tick
-        Stopwatch watch = new Stopwatch();
-        watch.Start();
         if (GenHostility.AnyHostileActiveThreatToPlayer(Map))
         {
             shouldApply = true;
         }
-        watch.Stop();
-        Log.Warning(watch.ElapsedMilliseconds + "ms to check for hostile threats");
         return shouldApply;
     }
 
