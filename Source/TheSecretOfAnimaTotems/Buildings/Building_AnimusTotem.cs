@@ -17,6 +17,8 @@ public abstract class Building_AnimusTotem : Building
 
     private bool Linked => compFacility_Grouped.LinkedBuildings.Any();
 
+    public bool ShouldBeActive => Spawned && !Destroyed && compRefuelable?.HasFuel == true && Linked;
+
     // Decided to go with a CompRefuelable instead of taking directly from the tree
     //private CompSpawnSubplant compSP;
     //public CompSpawnSubplant CompSpawnSubplant
@@ -55,7 +57,7 @@ public abstract class Building_AnimusTotem : Building
 
     public override void Tick()
     {
-        if (Spawned && compRefuelable.HasFuel && Linked)
+        if (ShouldBeActive)
         {
             DoTotemEffect();
         }
@@ -72,6 +74,16 @@ public abstract class Building_AnimusTotem : Building
     }
 
     public virtual void DoTotemEffect()
+    {
+    }
+
+    internal void RestoreRegistration()
+    {
+        if (ShouldBeActive)
+            RegisterTotem();
+    }
+
+    public virtual void RegisterTotem()
     {
     }
 

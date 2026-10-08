@@ -17,6 +17,19 @@ public class Building_TotemReflex : Building_AnimusTotem
 {
     private bool isApplied = false;
 
+    public override void Tick()
+    {
+        if (ShouldBeActive)
+        {
+            DoTotemEffect();
+        }
+        else
+        {
+            isApplied = false;
+            EndTotemEffect();
+        }
+    }
+
     public override void DoTotemEffect()
     {
         if (CheckIfShouldApply())

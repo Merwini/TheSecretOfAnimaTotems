@@ -15,6 +15,12 @@ public class Building_TotemMemory : Building_AnimusTotem
 
     public override void DoTotemEffect()
     {
+        RegisterTotem();
+    }
+
+
+    public override void RegisterTotem()
+    {
         gameComp.activeMemory.Add(this);
     }
 
@@ -24,7 +30,7 @@ public class Building_TotemMemory : Building_AnimusTotem
     }
 
     [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]
-    public static class Harmony_Memory
+    public static class SkillRecord_Learn_Prefix
     {
         public static void Prefix(ref float xp)
         {

@@ -15,6 +15,11 @@ public class Building_TotemVersatility : Building_AnimusTotem
 {
     public override void DoTotemEffect()
     {
+        RegisterTotem();
+    }
+
+    public override void RegisterTotem()
+    {
         HashSet<Building_TotemVersatility> buildings = gameComp.activeVersatility.TryGetValue(this.Map);
         if (buildings == null)
         {

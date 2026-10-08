@@ -13,6 +13,12 @@ public class Building_TotemTemper : Building_AnimusTotem
 {
     public override void DoTotemEffect()
     {
+        RegisterTotem();
+    }
+
+
+    public override void RegisterTotem()
+    {
         gameComp.activeTemper.Add(this);
     }
 
@@ -22,7 +28,7 @@ public class Building_TotemTemper : Building_AnimusTotem
     }
 
     [HarmonyPatch(typeof(Thought), nameof(Thought.DurationTicks), MethodType.Getter)]
-    public static class Harmony_Temper
+    public static class Thought_DurationTicks_Postfix
     {
         public static void Postfix(Thought __instance, ref int __result)
         {

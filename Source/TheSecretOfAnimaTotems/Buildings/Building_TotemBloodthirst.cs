@@ -13,6 +13,11 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
 {
     public override void DoTotemEffect()
     {
+        RegisterTotem();
+    }
+
+    public override void RegisterTotem()
+    {
         gameComp.activeBloodthirst.Add(this);
     }
 

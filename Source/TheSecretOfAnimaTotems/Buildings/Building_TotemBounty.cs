@@ -15,6 +15,12 @@ public class Building_TotemBounty : Building_AnimusTotem
 
     public override void DoTotemEffect()
     {
+        RegisterTotem();
+    }
+
+
+    public override void RegisterTotem()
+    {
         HashSet<Building_TotemBounty> buildings = gameComp.activeBounty.TryGetValue(this.Map);
         if (buildings == null)
         {
@@ -35,7 +41,7 @@ public class Building_TotemBounty : Building_AnimusTotem
     }
 
     [HarmonyPatch(typeof(Plant), nameof(Plant.GrowthRate), MethodType.Getter)]
-    public static class Harmony_Bounty
+    public static class Plant_GrowthRate_Postfix
     {
         public static void Postfix(Plant __instance, ref float __result)
         {

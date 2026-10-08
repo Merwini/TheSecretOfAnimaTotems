@@ -37,19 +37,18 @@ public class GameComponent_TotemTracker : GameComponent
 
     public void Cleanup()
     {
-        activeMemory ??= new HashSet<Building_TotemMemory>();
-        activeTemper ??= new HashSet<Building_TotemTemper>();
-        activeBloodthirst ??= new HashSet<Building_TotemBloodthirst>();
+        activeMemory = new HashSet<Building_TotemMemory>();
+        activeTemper = new HashSet<Building_TotemTemper>();
+        activeBloodthirst = new HashSet<Building_TotemBloodthirst>();
 
-        activeBounty ??= new Dictionary<Map, HashSet<Building_TotemBounty>>();
-        activeVersatility ??= new Dictionary<Map, HashSet<Building_TotemVersatility>>();
+        activeBounty = new Dictionary<Map, HashSet<Building_TotemBounty>>();
+        activeVersatility = new Dictionary<Map, HashSet<Building_TotemVersatility>>();
 
-        activeMemory.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
-        activeTemper.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
-        activeBloodthirst.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned);
-
-        CleanupBounty();
-        CleanupVersatility();
+        foreach (Map map in Find.Maps)
+        {
+            foreach (Building_AnimusTotem totem in map.listerThings.AllThings.OfType<Building_AnimusTotem>())
+                totem.RestoreRegistration();
+        }
     }
 
     public void CleanupBounty()
@@ -138,18 +137,5 @@ public class GameComponent_TotemTracker : GameComponent
                     activeVersatility.Remove(mapsToRemove[i]);
             }
         }
-    }
-
-    public override void ExposeData()
-    {
-        Scribe_Collections.Look(ref activeMemory, "activeMemory", LookMode.Reference);
-        Scribe_Collections.Look(ref activeTemper, "activeTemper", LookMode.Reference);
-        Scribe_Collections.Look(ref activeBloodthirst, "activeBloodthirst", LookMode.Reference);
-
-        // TODO fix serialization
-        Scribe_Collections.Look(ref activeBounty, "activeBounty", LookMode.Reference, LookMode.Reference);
-        Scribe_Collections.Look(ref activeVersatility, "activeVersatility", LookMode.Reference, LookMode.Reference);
-
-        base.ExposeData();
     }
 }
