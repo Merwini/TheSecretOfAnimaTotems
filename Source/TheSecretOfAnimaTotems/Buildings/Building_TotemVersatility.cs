@@ -31,12 +31,22 @@ public class Building_TotemVersatility : Building_AnimusTotem
 
     public override void EndTotemEffect()
     {
-        HashSet<Building_TotemVersatility> buildings = gameComp.activeVersatility.TryGetValue(this.Map);
+        Map map = this.MapHeld;
+        if (map == null)
+        {
+            gameComp.CleanupVersatility();
+            return;
+        }
+
+        HashSet<Building_TotemVersatility> buildings = gameComp.activeVersatility.TryGetValue(map);
         if (buildings != null)
         {
             buildings.Remove(this);
+            if (buildings.Count == 0)
+            {
+                gameComp.activeVersatility.Remove(map);
+            }
         }
-        gameComp.CleanupVersatility();
     }
 
     public static float AdjustFactor(float factor, SkillRecord skill)
