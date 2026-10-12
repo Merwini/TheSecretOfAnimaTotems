@@ -27,8 +27,8 @@ public class Building_TotemMemory : Building_AnimusTotem
         gameComp.activeMemory.Remove(this);
     }
 
-    [HarmonyPatch(typeof(Thought), nameof(Thought.DurationTicks), MethodType.Getter)]
-    public static class Thought_DurationTicks_Postfix
+    [HarmonyPatch(typeof(Thought_Memory), nameof(Thought.DurationTicks), MethodType.Getter)]
+    public static class Thought_Memory_DurationTicks_Postfix
     {
         public static void Postfix(Thought __instance, ref int __result)
         {
