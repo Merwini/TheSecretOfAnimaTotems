@@ -26,27 +26,55 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
         gameComp.activeBloodthirst.Remove(this);
     }
 
+    public static bool CheckIfBloodlustShouldApply(Pawn victim, Pawn instigator)
+    {
+        if (GameComponent_TotemTracker.Instance.activeBloodthirst.Count == 0)
+                return false;
+
+            if (!instigator.IsColonist)
+                return false;
+
+            if (instigator.Dead || instigator.Destroyed || !instigator.Spawned)
+                return false;
+
+            if (!victim.HostileTo(Faction.OfPlayer))
+                return false;
+
+            return true;
+    }
+
+    public static void ApplyOrUpdateBloodlust(Pawn pawn)
+    {
+        Hediff_Bloodthirst hediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_BloodthirstHediff) as Hediff_Bloodthirst;
+        if (hediff == null)
+        {
+            hediff = (Hediff_Bloodthirst)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_BloodthirstHediff, pawn);
+            pawn.health.AddHediff(hediff);
+        }
+        hediff.AddKill();
+    }
+
+    [HarmonyPatch(typeof(RecordsUtility), nameof(RecordsUtility.Notify_PawnDowned))]
+    public static class RecordsUtility_Notify_PawnDowned_Postfix
+    {
+        public static void Postfix(Pawn downed, Pawn instigator)
+        {
+            if (CheckIfBloodlustShouldApply(downed, instigator))
+            {
+                ApplyOrUpdateBloodlust(instigator);
+            }
+        }
+    }
+    
     [HarmonyPatch(typeof(RecordsUtility), nameof(RecordsUtility.Notify_PawnKilled))]
     public static class RecordsUtility_Notify_PawnKilled_Postfix
     {
         public static void Postfix(Pawn killed, Pawn killer)
         {
-            if (GameComponent_TotemTracker.Instance.activeBloodthirst.Count == 0)
-                return;
-
-            if (!killer.IsColonist)
-                return;
-
-            if (killer.Dead || killer.Destroyed || !killer.Spawned)
-                return;
-
-            Hediff_Bloodthirst hediff = killer.health?.hediffSet?.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_BloodthirstHediff) as Hediff_Bloodthirst;
-            if (hediff == null)
+            if (CheckIfBloodlustShouldApply(killed, killer))
             {
-                hediff = (Hediff_Bloodthirst)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_BloodthirstHediff, killer);
-                killer.health.AddHediff(hediff);
+                ApplyOrUpdateBloodlust(killer);
             }
-            hediff.AddKill();
         }
     }
 }
