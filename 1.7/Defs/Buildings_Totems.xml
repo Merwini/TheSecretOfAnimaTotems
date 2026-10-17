@@ -93,18 +93,18 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<!-- <ThingDef ParentName="TSOA_AnimusTotemBase">
-		<defName>TSOA_TotemTemper</defName>
-		<label>animus totem of temper</label>
-		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences your colonists, reminding them of good memories and distracting them from bad ones.\n\nFor your colonists, shortens the duration of negative thought by 50%, increases the duration of positive ones by 50%.</description>
-		<thingClass>tsoa.totems.Building_TotemTemper</thingClass>
+	<ThingDef ParentName="TSOA_AnimusTotemBase">
+		<defName>TSOA_TotemObedience</defName>
+		<label>animus totem of obedience</label>
+		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix's worldwide psychic field to create a low-level psychic link between your colonists and their animals.\n\nWhile active, increases the trainability of all your animals by one level (none to intermediate, intermediate to advanced).</description>
+		<thingClass>tsoa.totems.Building_TotemObedience</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemDog</texPath>
 		</graphicData>
 		<researchPrerequisites>
 			<li>TSOA_TotemOne</li>
 		</researchPrerequisites>
-	</ThingDef> -->
+	</ThingDef>
 
 	<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemBounty</defName>
