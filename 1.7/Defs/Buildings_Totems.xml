@@ -163,8 +163,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemBase">
 		<defName>TSOA_TotemReflex</defName>
 		<label>animus totem of reflex</label>
-		<!-- TODO rewrite -->
-		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, channels a psychic warning through the anima radix when danger strikes nearby.\n\nDoubles all colonists' movement speed on the same map for 60 seconds when certain hostile events occur.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, channels a psychic warning through the anima radix when danger strikes nearby.\n\Triples all colonists' movement speed on the same map for 60 seconds when certain hostile events occur.</description>
 		<thingClass>tsoa.totems.Building_TotemReflex</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCat</texPath>

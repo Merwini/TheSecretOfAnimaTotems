@@ -35,13 +35,12 @@
 		<defName>TSOA_ReflexHediff</defName>
 		<hediffClass>tsoa.totems.Hediff_Reflex</hediffClass>
 		<label>animus reflex</label>
-		<!-- TODO rewrite -->
-		<description>The anima radix sharpens this colonist's reflexes in response to danger, doubling movement speed for 60 seconds.</description>
+		<description>A burst of energy from the anima radix sharpens this colonist's reflexes in response to danger, tripling  movement speed for 60 seconds.</description>
 		<isBad>false</isBad>
 		<stages>
 			<li>
 				<statFactors>
-					<MoveSpeed>2</MoveSpeed>
+					<MoveSpeed>3</MoveSpeed>
 				</statFactors>
 			</li>
 		</stages>
