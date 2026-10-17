@@ -10,8 +10,6 @@
         "${workspaceFolder}/Source/TheSecretOfAnimaTotems/TheSecretOfAnimaTotems.csproj",
         "--configuration",
         "Release",
-        "--verbosity",
-        "minimal"
       ],
       "problemMatcher": "$msCompile",
       "group": {

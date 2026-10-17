@@ -16,7 +16,6 @@ public class Building_TotemMemory : Building_AnimusTotem
         RegisterTotem();
     }
 
-
     public override void RegisterTotem()
     {
         gameComp.activeMemory.Add(this);
