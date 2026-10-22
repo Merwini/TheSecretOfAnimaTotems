@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using tsoa.core;
 using Verse;
+using tsoa.core;
 
 namespace tsoa.totems;
 
