@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+	<DesignatorDropdownGroupDef>
+		<defName>TSOA_AnimusTotemsDropdown</defName>
+		<label>animus totems</label>
+		<iconSource>Placed</iconSource>
+	</DesignatorDropdownGroupDef>
+
 	<ThingDef ParentName="BuildingBase" Abstract="True" Name="TSOA_AnimusTotemBase">
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -29,6 +35,7 @@
 			<TSOA_AnimaSap>3</TSOA_AnimaSap>
 		</costList>
 		<minifiedDef>MinifiedThing</minifiedDef>
+		<designatorDropdown>TSOA_AnimusTotemsDropdown</designatorDropdown>
 		<thingCategories>
 			<li>BuildingsMisc</li>
 		</thingCategories>
