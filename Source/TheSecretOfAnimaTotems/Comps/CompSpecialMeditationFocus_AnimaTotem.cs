@@ -114,7 +114,7 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
     // Is this stupid? Making a fake HediffStage just to store the lists as they are passed to each Cairn
     public void BuildHediffStage(Hediff_CairnEffect hediff)
     {
-        List<Thing> linkedFacilities = CachedCompABFG.LinkedFacilitiesListForReading;
+        List<Thing> linkedFacilities = CachedFacilityComp.LinkedFacilitiesListForReading;
         if (linkedFacilities.NullOrEmpty())
             return;
 
