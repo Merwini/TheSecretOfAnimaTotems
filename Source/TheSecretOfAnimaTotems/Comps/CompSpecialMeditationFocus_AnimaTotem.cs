@@ -12,20 +12,22 @@ namespace tsoa.totems;
 
 public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_Anima
 {
-    private const int TicksUntilEffect = 2500; // 1 in-game hour
     private const int ResetPawnProgressAfterTicks = 120;
-    private Dictionary<int, MeditationTracker> trackerDict = new Dictionary<int, MeditationTracker>();
+    private Dictionary<int, MeditationTracker> trackerDict = new();
+    private Dictionary<int, List<Building_AnimusCairn>> cairnEffectsDict = new();
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
-        trackerDict ??= new Dictionary<int, MeditationTracker>();
-
         base.PostSpawnSetup(respawningAfterLoad);
+
+        CleanTrackerDictionary();
+        BuildCairnEffectsDictionary();
     }
 
     public override void CompTickLong()
     {
-        CleanDictionary();
+        CleanTrackerDictionary();
+        BuildCairnEffectsDictionary();
         base.CompTickLong();
     }
 
@@ -36,13 +38,19 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
         if (pawn == null)
             return;
 
-        if (UpdateTrackerForPawn(pawn))
+        int meditatedTicks = UpdateTrackerForPawn(pawn);
+
+        if (cairnEffectsDict.ContainsKey(meditatedTicks))
         {
-            ApplyOrReapplyHediffToPawn(pawn);
+            Hediff_CairnEffect hediff = ApplyOrReapplyHediffToPawn(pawn);
+            if (ApplyCairnEffectsForTick(meditatedTicks, hediff))
+            {
+                // TODO some sort of visual/auditory effect
+            }
         }
     }
 
-    private bool UpdateTrackerForPawn(Pawn pawn)
+    private int UpdateTrackerForPawn(Pawn pawn)
     {
         int id = pawn.thingIDNumber;
         int now = Find.TickManager.TicksGame;
@@ -66,11 +74,13 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
         tr.lastTickSeen = now;
         tr.accumulatedTicks++;
 
-        return tr.accumulatedTicks >= TicksUntilEffect && !tr.alreadyApplied;
+        return tr.accumulatedTicks;
     }
 
-    private void CleanDictionary()
+    private void CleanTrackerDictionary()
     {
+        trackerDict ??= new();
+
         int now = Find.TickManager.TicksGame;
 
         if (trackerDict.Count == 0)
@@ -92,28 +102,11 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
         }
     }
 
-    public void ApplyOrReapplyHediffToPawn(Pawn pawn)
+    private void BuildCairnEffectsDictionary()
     {
-        Hediff_CairnEffect hediff = (Hediff_CairnEffect)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_CairnHediff, pawn);
-        BuildHediffStage(hediff);
+        cairnEffectsDict ??= new();
+        cairnEffectsDict.Clear();
 
-        if (!hediff.HasStats)
-            return;
-
-        Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(TSOAT_DefOf.TSOA_CairnHediff);
-        if (existing != null)
-        {
-            pawn.health.RemoveHediff(existing);
-        }
-
-        pawn.health.AddHediff(hediff);
-        trackerDict.TryGetValue(pawn.thingIDNumber, out var tr);
-        tr.alreadyApplied = true;
-    }
-
-    // Is this stupid? Making a fake HediffStage just to store the lists as they are passed to each Cairn
-    public void BuildHediffStage(Hediff_CairnEffect hediff)
-    {
         List<Thing> linkedFacilities = CachedFacilityComp.LinkedFacilitiesListForReading;
         if (linkedFacilities.NullOrEmpty())
             return;
@@ -122,16 +115,58 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
         if (cairns.NullOrEmpty())
             return;
 
-        HediffStage hediffStage = new HediffStage();
-        hediffStage.statOffsets = new List<StatModifier>();
-        hediffStage.statFactors = new List<StatModifier>();
-
-        foreach (Building_AnimusCairn cairn in cairns)
+        foreach (var cairn in cairns)
         {
-            cairn.ApplyCairnEffect(hediffStage);
+            int ticks = cairn.EffectTicks;
+            if (cairnEffectsDict.TryGetValue(ticks, out var list))
+            {
+                list.Add(cairn);
+            }
+            else
+            {
+                cairnEffectsDict.Add(ticks, new() {cairn});
+            }
+        }
+    }
+
+    public Hediff_CairnEffect ApplyOrReapplyHediffToPawn(Pawn pawn)
+    {
+        Hediff_CairnEffect hediff = pawn.health.hediffSet.GetFirstHediff<Hediff_CairnEffect>();
+        if (hediff == null)
+        {
+            hediff = (Hediff_CairnEffect)HediffMaker.MakeHediff(TSOAT_DefOf.TSOA_CairnHediff, pawn);
+            pawn.health.AddHediff(hediff);
+        }
+        else
+        {
+            // resetting the hediff timer does allow one pawn to maintain buffs from one tree by meditating at any tree, but I'm fine with this edge case
+            HediffComp_Disappears disappears = hediff.GetComp<HediffComp_Disappears>();
+            if (disappears != null)
+            {
+                disappears.ResetElapsedTicks();
+            }
+            else
+            {
+                Log.Error($"[TSOA] Cairn Effect hediff is missing HediffComp_Disappears. Some other mod must have messed with it");
+            }
         }
 
-        hediff.StoreStatModifiers(hediffStage.statOffsets, hediffStage.statFactors);
+        return hediff;
+    }
+
+    public bool ApplyCairnEffectsForTick(int ticks, Hediff_CairnEffect hediff)
+    {
+        bool appliedAny = false;
+        if (cairnEffectsDict.TryGetValue(ticks, out var cairns))
+        {
+            appliedAny = true;
+            foreach (var cairn in cairns)
+            {
+                hediff.AddStatModifiersFromCairn(cairn);
+            }
+        }
+
+        return appliedAny;
     }
 
     public override void PostExposeData()
@@ -145,13 +180,11 @@ public class CompSpecialMeditationFocus_AnimaTotem : CompSpecialMeditationFocus_
     {
         public int accumulatedTicks;
         public int lastTickSeen;
-        public bool alreadyApplied;
 
         public void ExposeData()
         {
             Scribe_Values.Look(ref accumulatedTicks, "accumulatedTicks", 0);
             Scribe_Values.Look(ref lastTickSeen, "lastTickSeen", 0);
-            Scribe_Values.Look(ref alreadyApplied, "alreadyApplied", false);
         }
     }
 }

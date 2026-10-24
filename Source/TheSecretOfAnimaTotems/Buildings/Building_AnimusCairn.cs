@@ -20,8 +20,8 @@ public class Building_AnimusCairn : Building
                 CairnEffectExtension extension = def.GetModExtension<CairnEffectExtension>();
                 if (extension == null)
                 {
-                    Log.Error($"Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
-                    extension = new CairnEffectExtension();
+                    Log.Error($"[TSOA] Building_AnimusCairn of def {def.defName} from {def.modContentPack} has no CairnEffectExtension");
+                    effectExtension = new CairnEffectExtension();
                 }
                 else
                 {
@@ -31,6 +31,8 @@ public class Building_AnimusCairn : Building
             return effectExtension;
         }
     }
+
+    public int EffectTicks => EffectExtension.ticksToApplyEffect;
 
     public void ApplyCairnEffect(HediffStage stage)
     {

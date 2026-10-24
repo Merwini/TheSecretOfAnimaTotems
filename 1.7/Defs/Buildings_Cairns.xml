@@ -253,9 +253,9 @@
 		</researchPrerequisites>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
-				<statOffsets>
+				<statFactors>
 					<RangedCooldownFactor>0.8</RangedCooldownFactor>
-				</statOffsets>
+				</statFactors>
 			</li>
 		</modExtensions>
 	</ThingDef>

@@ -10,8 +10,9 @@ namespace tsoa.totems;
 
 public class Hediff_CairnEffect : HediffWithComps
 {
-    private List<StatModifier> statOffsets;
-    private List<StatModifier> statFactors;
+    private List<StatModifier> statOffsets = new();
+    private List<StatModifier> statFactors = new();
+    private HashSet<Building_AnimusCairn> appliedCairns = new();
 
     private HediffStage curStage;
     public override HediffStage CurStage
@@ -30,15 +31,56 @@ public class Hediff_CairnEffect : HediffWithComps
 
     public bool HasStats => !statOffsets.NullOrEmpty() || !statFactors.NullOrEmpty();
 
-    public void StoreStatModifiers(List<StatModifier> statOffsets, List<StatModifier> statFactors)
+    public void AddStatModifiersFromCairn(Building_AnimusCairn cairn)
     {
-        this.statOffsets = statOffsets;
-        this.statFactors = statFactors;
+        if (appliedCairns.Add(cairn))
+        {
+            CairnEffectExtension extension = cairn.EffectExtension;
+
+            List<StatModifier> offsets = extension.statOffsets;
+            if (!offsets.NullOrEmpty())
+            {
+                foreach (var offset in offsets)
+                {
+                    StatModifier mod = CurStage.statOffsets.FirstOrDefault(x => x.stat == offset.stat);
+                    if (mod != null)
+                    {
+                        mod.value += offset.value;
+                    }
+                    else
+                    {
+                        StatModifier newMod = new StatModifier() { stat = offset.stat, value = offset.value };
+                        CurStage.statOffsets.Add(newMod);
+                    }
+                }
+            }
+
+            List<StatModifier> factors = extension.statFactors;
+            if (!factors.NullOrEmpty())
+            {
+                foreach (var factor in factors)
+                {
+                    StatModifier mod = CurStage.statFactors.FirstOrDefault(x => x.stat == factor.stat);
+                    if (mod != null)
+                    {
+                        mod.value *= factor.value;
+                    }
+                    else
+                    {
+                        StatModifier newMod = new StatModifier() { stat = factor.stat, value = factor.value };
+                        CurStage.statFactors.Add(newMod);
+                    }
+                }
+            }
+        }
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
+
+        Scribe_Collections.Look(ref appliedCairns, "appliedCairns", LookMode.Reference);
+        appliedCairns ??= new();
 
         List<StatDef> statOffsetDefs = null;
         List<float> statOffsetValues = null;

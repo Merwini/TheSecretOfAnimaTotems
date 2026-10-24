@@ -13,4 +13,6 @@ public class CairnEffectExtension : DefModExtension
 {
     public List<StatModifier> statOffsets;
     public List<StatModifier> statFactors;
+
+    public int ticksToApplyEffect = 2500;
 }
