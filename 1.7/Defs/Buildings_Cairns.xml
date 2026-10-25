@@ -122,7 +122,7 @@
 
 	<ThingDef ParentName="TSOA_AnimusCairnBase">
 		<defName>TSOA_CairnMedical</defName>
-		<label>animus cairn of healing</label>
+		<label>animus cairn of tending</label>
 		<description>A cairn made from stone, jade, and anima grass. Channels knowledge from the anima radix to empower colonists who meditate at the tree it is linked to. This cairn improves the medical capabilities of the meditator.</description>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMedical</texPath>
@@ -192,7 +192,7 @@
 			<texPath>TSOA/Things/Building/Cairn/AnimusCairnTough</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_CairnTwo</li>
+			<li>TSOA_CairnOne</li>
 		</researchPrerequisites>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
@@ -230,7 +230,7 @@
 			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMelee</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_CairnOne</li>
+			<li>TSOA_CairnTwo</li>
 		</researchPrerequisites>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
@@ -249,7 +249,7 @@
 			<texPath>TSOA/Things/Building/Cairn/AnimusCairnRanged</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_CairnOne</li>
+			<li>TSOA_CairnTwo</li>
 		</researchPrerequisites>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
@@ -270,7 +270,7 @@
 			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMentalBreak</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_CairnOne</li>
+			<li>TSOA_AnimaOne</li>
 		</researchPrerequisites>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
@@ -289,7 +289,7 @@
 			<texPath>TSOA/Things/Building/Cairn/AnimusCairnMoveSpeed</texPath>
 		</graphicData>
 		<researchPrerequisites>
-			<li>TSOA_AnimaOne</li>
+			<li>TSOA_CairnOne</li>
 		</researchPrerequisites>
 		<modExtensions>
 			<li Class="tsoa.totems.CairnEffectExtension">
