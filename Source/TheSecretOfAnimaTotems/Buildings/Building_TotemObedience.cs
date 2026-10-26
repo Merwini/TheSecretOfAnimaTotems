@@ -26,7 +26,7 @@ public class Building_TotemObedience : Building_AnimusTotem
     {
         public static void Postfix(ref TrainabilityDef __result, Pawn pawn)
         {
-            if (__result != null && GameComponent_TotemTracker.Instance is GameComponent_TotemTracker comp && comp.activeObedience.Count != 0)
+            if (__result != null && GameComponent_TotemTracker.Instance?.activeObedience.Count != 0)
             {
                 __result = TrainableUtility.GetNextHighestTrainability(__result);
             }
@@ -38,7 +38,7 @@ public class Building_TotemObedience : Building_AnimusTotem
     {
         public static bool Prefix(Pawn __instance, ref bool __result)
         {
-            if (GameComponent_TotemTracker.Instance is GameComponent_TotemTracker comp && comp.activeObedience.Count != 0)
+            if (GameComponent_TotemTracker.Instance?.activeObedience.Count != 0)
             {
                 __result = false;
                 return false;

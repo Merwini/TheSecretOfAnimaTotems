@@ -28,7 +28,7 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
 
     public static bool CheckIfBloodlustShouldApply(Pawn victim, Pawn instigator)
     {
-        if (GameComponent_TotemTracker.Instance.activeBloodthirst.Count == 0)
+        if (GameComponent_TotemTracker.Instance?.activeBloodthirst.Count == 0)
                 return false;
 
             if (!instigator.IsColonist)

@@ -55,7 +55,7 @@ public class Building_TotemVersatility : Building_AnimusTotem
         if (factor >= 1f || pawn == null || !pawn.IsColonist || !pawn.Spawned)
             return factor;
 
-        if (GameComponent_TotemTracker.Instance.activeVersatility.ContainsKey(pawn.Map))
+        if (GameComponent_TotemTracker.Instance?.activeVersatility.ContainsKey(pawn.Map) ?? false)
             return 1f;
 
         return factor;

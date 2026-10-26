@@ -55,7 +55,7 @@ public class Building_TotemBounty : Building_AnimusTotem
     {
         public static void Postfix(Plant __instance, ref float __result)
         {
-            if (GameComponent_TotemTracker.Instance.activeBounty.ContainsKey(__instance.Map))
+            if (GameComponent_TotemTracker.Instance?.activeBounty.ContainsKey(__instance.Map) ?? false)
             {
                 __result *= growthRate;
             }
