@@ -61,7 +61,7 @@ public class Hediff_Bloodthirst : HediffWithComps
 
     public void AddKill()
     {
-        killCount = Math.Clamp(killCount + 1, 0, 10);
+        killCount = Mathf.Clamp(killCount + 1, 0, 10);
         curStage = null;
         Disappears.ResetElapsedTicks();
     }
