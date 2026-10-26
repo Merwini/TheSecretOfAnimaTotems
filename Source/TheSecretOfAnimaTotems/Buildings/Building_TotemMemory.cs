@@ -35,7 +35,7 @@ public class Building_TotemMemory : Building_AnimusTotem
             if (!__instance.pawn.IsPlayerControlled)
                 return;
 
-            if (GameComponent_TotemTracker.Instance.activeMemory.Count == 0)
+            if (GameComponent_TotemTracker.Instance?.activeMemory.Count == 0)
                 return;
 
             ThoughtStage stage = __instance.CurStage;
