@@ -9,13 +9,43 @@
         "build",
         "${workspaceFolder}/Source/TheSecretOfAnimaTotems/TheSecretOfAnimaTotems.csproj",
         "--configuration",
-        "Release",
+        "Release"
       ],
       "problemMatcher": "$msCompile",
       "group": {
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "Build Release 1.6",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/Source/TheSecretOfAnimaTotems/TheSecretOfAnimaTotems.csproj",
+        "--configuration",
+        "Release",
+        "--framework",
+        "net48"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "Build Release 1.7",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/Source/TheSecretOfAnimaTotems/TheSecretOfAnimaTotems.csproj",
+        "--configuration",
+        "Release",
+        "--framework",
+        "net10.0"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
     }
   ]
 }
