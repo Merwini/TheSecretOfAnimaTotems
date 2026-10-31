@@ -32,10 +32,10 @@ public class Building_TotemMemory : Building_AnimusTotem
         public static void Postfix(Thought __instance, ref int __result)
         {
             // Is this the most efficient order for the early returns?
-            if (!__instance.pawn.IsPlayerControlled)
+            if (__instance.pawn?.IsPlayerControlled != true)
                 return;
 
-            if (GameComponent_TotemTracker.Instance?.activeMemory.Count == 0)
+            if ((GameComponent_TotemTracker.Instance?.activeMemory?.Count ?? 0) == 0)
                 return;
 
             ThoughtStage stage = __instance.CurStage;
