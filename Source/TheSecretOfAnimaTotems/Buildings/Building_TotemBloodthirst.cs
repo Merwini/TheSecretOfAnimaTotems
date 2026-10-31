@@ -31,7 +31,7 @@ public class Building_TotemBloodthirst : Building_AnimusTotem
         if (GameComponent_TotemTracker.Instance?.activeBloodthirst.Count == 0)
                 return false;
 
-            if (!instigator.IsColonist)
+            if (instigator?.IsColonist != true)
                 return false;
 
             if (instigator.Dead || instigator.Destroyed || !instigator.Spawned)
