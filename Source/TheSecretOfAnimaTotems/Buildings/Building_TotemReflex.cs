@@ -17,19 +17,6 @@ public class Building_TotemReflex : Building_AnimusTotem
 {
     private bool isApplied = false;
 
-    public override void Tick()
-    {
-        if (ShouldBeActive)
-        {
-            DoTotemEffect();
-        }
-        else
-        {
-            isApplied = false;
-            EndTotemEffect();
-        }
-    }
-
     public override void DoTotemEffect()
     {
         if (CheckIfShouldApply())
@@ -44,6 +31,11 @@ public class Building_TotemReflex : Building_AnimusTotem
             // hediff might actually still be applied, but hostiles are gone so I don't mind it refreshing if new hostiles appear
             isApplied = false;
         }
+    }
+
+    public override void EndTotemEffect()
+    {
+        isApplied = false;
     }
 
     private bool CheckIfShouldApply()
