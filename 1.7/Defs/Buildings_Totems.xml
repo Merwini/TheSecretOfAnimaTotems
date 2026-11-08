@@ -98,7 +98,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemGrass">
 		<defName>TSOA_TotemFriendship</defName>
 		<label>animus totem of friendship</label>
-		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences other factions to view your colony more favorably.\n\nFor non-permanently hostile factions, increases goodwill by 2 per day, up to a cap of 100 over their natural goodwill.</description>
 		<thingClass>tsoa.totems.Building_TotemFriendship</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCapybara</texPath>
@@ -164,7 +164,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemSap">
 		<defName>TSOA_TotemBloodthirst</defName>
 		<label>animus totem of bloodthirst</label>
-		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, taps into the anima radix to collect the psychic energy released when a life is taken, a direct it into the colonist that took the life.\n\nGives a short-lived combat bonus. Every kill resets the timer and grows the bonus, to a maximum of 10 stacks.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, taps into the anima radix to collect the psychic energy released when a life is taken, and directs it into the colonist that took the life.\n\nGives a short-lived combat bonus. Every kill resets the timer and grows the bonus, to a maximum of 10 stacks.</description>
 		<thingClass>tsoa.totems.Building_TotemBloodthirst</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemShark</texPath>
@@ -191,7 +191,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemSap">
 		<defName>TSOA_TotemReflex</defName>
 		<label>animus totem of reflex</label>
-		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, channels a psychic warning through the anima radix when danger strikes nearby.\n\Triples all colonists' movement speed on the same map for 60 seconds when certain hostile events occur.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When connected to an anima tree and fueled with anima sap, channels a psychic warning through the anima radix when danger strikes nearby.\n\nTriples all colonists' movement speed on the same map for 60 seconds when certain hostile events occur.</description>
 		<thingClass>tsoa.totems.Building_TotemReflex</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCat</texPath>
@@ -217,7 +217,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemSap">
 		<defName>TSOA_TotemDiscovery</defName>
 		<label>animus totem of discovery</label>
-		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, raises awareness of distant surrounding.\n\nWhile fueled, spawns an Item Stash quest every 1.5 - 3.5 days.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, raises awareness of distant surroundings.\n\nWhile fueled, spawns an Item Stash quest every 1.5 - 3.5 days.</description>
 		<thingClass>tsoa.totems.Building_TotemDiscovery</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemEagle</texPath>
