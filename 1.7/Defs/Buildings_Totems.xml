@@ -111,7 +111,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemGrass">
 		<defName>TSOA_TotemMemory</defName>
 		<label>animus totem of memory</label>
-		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences your colonists, reminding them of good memories and distracting them from bad ones.\n\nFor your colonists, shortens the duration of negative thought by 50%, increases the duration of positive ones by 50%.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a worldwide psychic signal. This signal subtly influences your colonists, reminding them of good memories and distracting them from bad ones.\n\nFor your colonists, shortens the duration of negative thought by 50%, increases the duration of positive ones by 50%.</description>
 		<thingClass>tsoa.totems.Building_TotemMemory</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemElephant</texPath>
@@ -124,7 +124,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemGrass">
 		<defName>TSOA_TotemObedience</defName>
 		<label>animus totem of obedience</label>
-		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix's worldwide psychic field to create a low-level psychic link between your colonists and their animals.\n\nWhile active, increases the trainability of all your animals by one level (none to intermediate, intermediate to advanced).</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix's worldwide psychic field to create a low-level psychic link between your colonists and their animals.\n\nWhile active, increases the trainability of all your animals by one level (none to intermediate, intermediate to advanced).</description>
 		<thingClass>tsoa.totems.Building_TotemObedience</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemDog</texPath>
@@ -137,7 +137,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemGrass">
 		<defName>TSOA_TotemBounty</defName>
 		<label>animus totem of bounty</label>
-		<description>A totem of of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a map psychic signal. This signal stimulates plants to grow faster.\n\nIncreases the growth speed of all plants on the same map as the totem by 50%.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, taps into the anima radix to emit a map psychic signal. This signal stimulates plants to grow faster.\n\nIncreases the growth speed of all plants on the same map as the totem by 50%.</description>
 		<thingClass>tsoa.totems.Building_TotemBounty</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemCow</texPath>
@@ -217,7 +217,7 @@
 	<ThingDef ParentName="TSOA_AnimusTotemSap">
 		<defName>TSOA_TotemDiscovery</defName>
 		<label>animus totem of discovery</label>
-		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima grass, raises awareness of distant surroundings.\n\nWhile fueled, spawns an Item Stash quest every 1.5 - 3.5 days.</description>
+		<description>A totem of carved stone and jade, lacquered with anima sap. When linked to an anima tree and fueled with anima sap, raises awareness of distant surroundings.\n\nWhile fueled, spawns an Item Stash quest every 1.5 - 3.5 days.</description>
 		<thingClass>tsoa.totems.Building_TotemDiscovery</thingClass>
 		<graphicData>
 			<texPath>TSOA/Things/Building/Totem/AnimusTotemEagle</texPath>
