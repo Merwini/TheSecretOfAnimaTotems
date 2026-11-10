@@ -50,6 +50,7 @@
 		<pathCost>42</pathCost>
 		<canOverlapZones>true</canOverlapZones>
 		<tickerType>Normal</tickerType>
+		<drawerType>MapMeshAndRealTime</drawerType>
 		<defaultPlacingRot>North</defaultPlacingRot>
 		<comps>
 			<li Class="tsoa.core.CompProperties_Facility_Grouped">
