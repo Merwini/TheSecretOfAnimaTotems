@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<DesignatorDropdownGroupDef>
+	<!-- <DesignatorDropdownGroupDef>
 		<defName>TSOA_AnimusCairnsDropdown</defName>
 		<label>animus cairns</label>
 		<iconSource>Placed</iconSource>
-	</DesignatorDropdownGroupDef>
+	</DesignatorDropdownGroupDef> -->
 
 	<ThingDef ParentName="BuildingBase" Abstract="True" Name="TSOA_AnimusCairnBase">
 		<graphicData>
@@ -20,7 +20,7 @@
 			<WorkToBuild>4000</WorkToBuild>
 			<Mass>75</Mass>
 		</statBases>
-		<designationCategory>Misc</designationCategory>
+		<designationCategory>TSOA_DesignationCategory</designationCategory>
 		<stuffCategories>
 			<li>Stony</li>
 		</stuffCategories>
@@ -31,7 +31,7 @@
 			<TSOA_AnimaBark>1</TSOA_AnimaBark>
 		</costList>
 		<minifiedDef>MinifiedThing</minifiedDef>
-		<designatorDropdown>TSOA_AnimusCairnsDropdown</designatorDropdown>
+		<!-- <designatorDropdown>TSOA_AnimusCairnsDropdown</designatorDropdown> -->
 		<thingCategories>
 			<li>BuildingsMisc</li>
 		</thingCategories>
